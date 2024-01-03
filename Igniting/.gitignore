@@ -1,0 +1,8 @@
+#node_modules
+/node_modules
+
+# Dist folder
+/dist
+
+#parcel caching folder
+/.parcel-cache

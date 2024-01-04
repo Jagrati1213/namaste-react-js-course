@@ -42,26 +42,25 @@ a. Protect from malware attacks
 ### React Component Composition:
 
 - calling React component inside another component is called composition.
-  `// React Component
-const TitleComponent = () => {
+  ```
+  const TitleComponent = () => {
     return JSXHeading;
-}
-//Composition
-const ParentComponent = () => {
+  }
+  const ParentComponent = () => {
     return (
         <div>
             <TitleComponent />
             <p>it is React composition</p>
         </div>
     )
-}`
+  }
+  ```
 
 ### React.createElement vs JSX :
 
 | React.createElement                                  | JSX                                                                 |
 | ---------------------------------------------------- | ------------------------------------------------------------------- |
-| It used to create element that can we render on html | It's also used to create elements but firstly it convert            |
-|                                                      | into react createElement than js object after that it will render   |
+| It used to create element that can we render on html | Same as react Element, but used html syntax                         |
 | complex to understand                                | Easy to understand                                                  |
 | Take a long time for creating complex design         | take a less time for creating application                           |
 | It's a core React js                                 | It's not a part of react it's just used to make developer life easy |

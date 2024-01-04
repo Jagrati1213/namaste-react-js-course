@@ -41,9 +41,8 @@ a. Protect from malware attacks
      const HeadingComponent = ()=>{
      return <h1>Namaste React JS</h1>
      }
+     { HeadingComponent() } {/_ we can also called component like functions _/}
      ```
-     A.
-     `{ HeadingComponent() } {/_ we can also called component like functions _/} `
 
 ### React Component Composition:
 

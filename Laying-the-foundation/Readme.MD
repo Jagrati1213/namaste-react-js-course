@@ -70,7 +70,3 @@
 | Take a long time for creating complex design         | take a less time for creating application                           |
 | It's a core React js                                 | It's not a part of react it's just used to make developer life easy |
 | It not protect our system from malicious programs    | They protect our application                                        |
-
-
-### Assignment Image:
-![image](file:///E:/Downloads/assign.jpeg)

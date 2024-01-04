@@ -18,10 +18,10 @@
 
 #### Benefits of JSX:
 
-a. Easy to understand
-a. Easy to use
-a. Readable for users
-a. Protect from malware attacks
+i. Easy to understand
+i. Easy to use
+i. Readable for users
+i. Protect from malware attacks
 
 ### How React Works:
 

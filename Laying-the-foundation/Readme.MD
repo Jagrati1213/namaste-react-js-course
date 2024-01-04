@@ -36,8 +36,14 @@ a. Protect from malware attacks
   1. functional Based Component ==> new ways
      A. functional components are normal as function that return JSX Element.
      A. Always Follow Pascal Format. so, babel can understand.
-     A. example :` const HeadingComponent = ()=>{ return <h1>Namaste React JS</h1>}`
-     A. ` {HeadingComponent()} {/* we can also called component like functions */}`
+     A. example :
+     ```
+     const HeadingComponent = ()=>{
+     return <h1>Namaste React JS</h1>
+     }
+     ```
+     A.
+     `{ HeadingComponent() } {/_ we can also called component like functions _/} `
 
 ### React Component Composition:
 

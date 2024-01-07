@@ -35,7 +35,6 @@
 ### What is `npx` ?
 
 - npx : it's a node package execution, it's used when we not install package in our system, and wants to use them.
-- (![Alt text]())
 
 ### What is difference between `dependencies` vs `devDependencies`
 
@@ -58,15 +57,15 @@
 - 4. tree shaking
 - 5. lazy loading
 
-##### caches 👍:
+#### caches 👍:
 
 save all the changes in caches file and not re-configure the old data.
 
-##### tree shaking 👍:
+#### tree shaking 👍:
 
     remove un-used data or variables.
 
-##### lazy loading 👍:
+#### lazy loading 👍:
 
     load data, only when user reached on it, it's helpful in image optimizations.
 
@@ -94,12 +93,12 @@ save all the changes in caches file and not re-configure the old data.
 
 ### What is `browserlists`
 
-- It's describe which browser you wants to support your web application.
+- It's describe which browser you wants to support your web application, in any how.
 
-### Read about dif bundlers: vite, webpack, parcel
+<!-- ### Read about dif bundlers: vite, webpack, parcel
 
 parcel is very useful for building our package on environment.
-they have faster building process.
+they have faster building process. -->
 
 ### Read about: ^ - caret and ~ - tilda
 
@@ -108,4 +107,7 @@ they have faster building process.
 
 ### Read about Script types in html (MDN Docs)
 
-script have module type that helps to use import and export in our Javascript projects.
+- script have module type that helps to use import and export in our Javascript projects.
+- Crossorigin helps to reduce cors error.
+- async helps to load the script before the html parsing.
+- defer helps to load html parsing than scripts that comes from the network.

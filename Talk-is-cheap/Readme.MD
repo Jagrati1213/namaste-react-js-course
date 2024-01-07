@@ -62,5 +62,6 @@ var Greeting = createReactClass({
 
 ### What is a Config Driven UI ?
 
-- When front-end developer design the code for dynamically structure.
-- when our all things comes from the backend Api and after that it render on frontend that called Config Driven UI.
+- When we design real-world application than we want our site works globally.
+- when our all things comes from the backend Api than configure driven UI controls the Frontend to ensure it's work globally.
+- All the UI attributes, layout, style comes from the configure Driven UI.

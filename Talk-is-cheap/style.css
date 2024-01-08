@@ -119,6 +119,21 @@
      height: 200px;
  }
 
+ .filter-container {
+     display: flex;
+     justify-content: flex-end;
+ }
+
+ .filter-btn {
+     margin: 10px;
+     cursor: pointer;
+     background-color: var(--dark_color);
+     color: var(--body);
+     border: none;
+     padding: 12px;
+     border-radius: 5px;
+ }
+
  .footer {
      width: 100%;
      background-color: #451f08;

@@ -82,7 +82,7 @@ var Greeting = createReactClass({
 
 ## What is the importance of config.js file
 
--
+- Read about it.
 
 ## What are React Hooks 👍:
 

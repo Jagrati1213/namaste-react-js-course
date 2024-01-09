@@ -52,20 +52,29 @@
      padding: 2rem;
  }
 
- .search-container {
-     width: 100%;
+ .header_of_body {
      display: flex;
-     justify-content: center;
+     flex-wrap: wrap;
+     align-items: center;
+     justify-content: space-between;
      margin-bottom: 2rem;
+
+ }
+
+ .search-container {
+     width: 50%;
+     display: flex;
+     justify-content: space-between;
+     background: var(--light_color);
  }
 
  .search-container input {
-     width: 50%;
      padding: 12px;
      border-start-start-radius: 2px;
      border-end-start-radius: 2px;
      border: none;
      background: var(--light_color);
+     width: 100%;
  }
 
  .search-container button {
@@ -82,6 +91,7 @@
      display: flex;
      flex-wrap: wrap;
      justify-content: center;
+     width: 100%;
  }
 
  .res-card {

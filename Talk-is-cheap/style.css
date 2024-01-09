@@ -87,7 +87,8 @@
      cursor: pointer;
  }
 
- .res-container {
+ .res-container,
+ .simmer-container {
      display: flex;
      flex-wrap: wrap;
      justify-content: center;
@@ -134,7 +135,8 @@
      justify-content: flex-end;
  }
 
- .filter-btn {
+ .filter-btn,
+ .login-btn {
      margin: 10px;
      cursor: pointer;
      background-color: var(--dark_color);
@@ -142,6 +144,17 @@
      border: none;
      padding: 12px;
      border-radius: 5px;
+ }
+
+ .simmer-container {
+     height: 70vh;
+ }
+
+ .simmer-card {
+     height: 300px;
+     width: 280px;
+     background: #bdbbbb8f;
+     margin: 12px;
  }
 
  .footer {

@@ -67,9 +67,7 @@ var Greeting = createReactClass({
 - when our all things comes from the backend Api than configure driven UI controls the Frontend to ensure it's work globally.
 - All the UI attributes, layout, style comes from the configure Driven UI.
 
-# Episode 5
-
-<!-- Utils -->
+# Episode 5 Assignment 👍:
 
 ## Utils Folder contain 📁:
 
@@ -77,7 +75,16 @@ var Greeting = createReactClass({
 - Store Json files.
 - Store data which is common for our website.
 
-## Hooks 👍:
+## What is the difference between Named Export, Default export and \* as export?
+
+- Named Export : used when we need to export/import components from same file.
+- syntax `import {componentName} from 'path` and `export const componentName` or `export const {componentName}`
+
+## What is the importance of config.js file
+
+-
+
+## What are React Hooks 👍:
 
 - Hooks are in-build utils function given by React JS.
 - we used Hooks to update data in React js without page loading.
@@ -91,3 +98,8 @@ var Greeting = createReactClass({
   1.  Variable
   2.  Function : used to update the variable
 - it is an array like syntax.
+
+## Difference btw --save and --save-dev
+
+- --save : install package into dependency.
+- --save-dev : install package into dev-dependency.

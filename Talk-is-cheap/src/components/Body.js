@@ -25,10 +25,12 @@ const Body = () => {
         (<Simmer />) : (
             <div className="body">
                 <div className="header_of_body">
+                    {/* Search Box */}
                     <div className="search-container">
                         <input type="search" name="food-search" id="search" placeholder='search your favorite meal...' />
                         <button type='submit'>search</button>
                     </div>
+                    {/* Filter Button */}
                     <div className="filter-container">
                         <button className='filter-btn' onClick={() => {
                             // filter logic
@@ -40,6 +42,8 @@ const Body = () => {
                         }}>Top Rated Restaurants</button>
                     </div>
                 </div>
+
+                {/* Restaurant container */}
                 <div className="res-container">
                     {
                         listOfRes.map((item) => {

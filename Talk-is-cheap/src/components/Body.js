@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 // import { resList } from '../utils/reslist';
 import ResCard from './ResCrad';
 import Simmer from './Simmer';
+import { SWIGGY_API } from '../utils/constants';
 
 const Body = () => {
 
@@ -17,10 +18,10 @@ const Body = () => {
 
     // Fetch Restaurant from swiggy api
     const fetchData = async () => {
-        // swiggy API calling
-        const data = await fetch('https://www.swiggy.com/dapi/restaurants/list/v5?lat=22.7199008&lng=75.857383&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING');
+
+        const data = await fetch(SWIGGY_API);
         const response = await data.json();
-        const FetchLists = response.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+        const FetchLists = response.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
         setListOfRes(FetchLists);
         setFilterListOfRes(FetchLists);
     }

@@ -19,11 +19,16 @@ const Body = () => {
     // Fetch Restaurant from swiggy api
     const fetchData = async () => {
 
-        const data = await fetch(SWIGGY_API);
-        const response = await data.json();
-        const FetchLists = response.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-        setListOfRes(FetchLists);
-        setFilterListOfRes(FetchLists);
+        try {
+            const data = await fetch(SWIGGY_API);
+            const response = await data.json();
+            const fetchLists = response.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+
+            setListOfRes(fetchLists);
+            setFilterListOfRes(fetchLists);
+        } catch (error) {
+            console.error('Error fetching data from Swiggy API:', error);
+        }
     }
 
     // Filter out search restaurant

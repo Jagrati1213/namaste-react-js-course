@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import ResCard from './ResCrad';
 import Simmer from './Simmer';
 import { SWIGGY_API } from '../utils/constants';
+import { Link } from 'react-router-dom';
 
 const Body = () => {
 
@@ -75,7 +76,9 @@ const Body = () => {
                         FilterListOfRes.length == 0 ? <h1 style={{ color: 'black' }}>Not found</h1> :
                             FilterListOfRes.map((item) => {
                                 return (
-                                    <ResCard data={item} key={item?.info.id} />
+                                    <Link key={item?.info.id} to={`/restaurants/${item?.info.id}`}>
+                                        <ResCard data={item} />
+                                    </Link>
                                 )
                             })
                     }

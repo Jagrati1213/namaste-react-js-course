@@ -11,6 +11,7 @@
      margin: 0;
      padding: 0;
      box-sizing: border-box;
+     font-family: sans-serif;
  }
 
  .header {
@@ -153,6 +154,52 @@
      margin: 12px;
  }
 
+ .menu {
+     padding: 2rem;
+     max-width: 50%;
+     margin: 0 auto;
+     min-height: 100vh;
+ }
+
+ .res-heading h3 {
+     font-size: 1.4rem;
+     margin: 0;
+ }
+
+ .res-heading p {
+     font-size: 1rem;
+     margin: .1rem;
+ }
+
+ .ratings {
+     font-size: 12px;
+     padding: 8px;
+     border: 1px solid var(--light_color);
+     border-radius: 4px;
+     height: fit-content;
+     text-align: center;
+     margin: 0;
+ }
+
+ .res-time-and-price {
+     font-size: 12px;
+     font-weight: 600;
+ }
+
+ .res-time-and-price p {
+     margin: 0;
+ }
+
+ .menu-items {
+     margin: 1rem 0;
+     padding-left: 1rem;
+ }
+
+ .menu-items h4,
+ .menu-items p {
+     margin: 0;
+ }
+
  .footer {
      width: 100%;
      background-color: #451f08;
@@ -165,4 +212,8 @@
      display: flex;
      justify-content: space-evenly;
      font-size: 15px;
+ }
+
+ a {
+     text-decoration: none;
  }

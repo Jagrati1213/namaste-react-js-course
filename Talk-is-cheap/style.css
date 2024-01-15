@@ -111,9 +111,9 @@
  }
 
  .res-card h1,
- h2,
- p,
- h4 {
+ .res-card h2,
+ .res-card p,
+ .res-card h4 {
      margin: 5px 0 0 0;
      color: rgba(255, 255, 255, 0.708);
      font-family: Verdana, Geneva, Tahoma, sans-serif;

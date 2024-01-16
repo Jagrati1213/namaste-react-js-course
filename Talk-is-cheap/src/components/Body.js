@@ -15,6 +15,10 @@ const Body = () => {
 
     useEffect(() => {
         fetchData();
+
+        return () => {
+            fetchData();
+        }
     }, []);
 
     // Fetch Restaurant from swiggy api

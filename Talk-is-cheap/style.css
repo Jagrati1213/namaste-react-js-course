@@ -48,6 +48,10 @@
      cursor: pointer;
  }
 
+ .nav_links_container li a {
+     color: var(--dark_color);
+ }
+
  .body {
      height: auto;
      padding: 2rem;

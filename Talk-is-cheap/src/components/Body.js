@@ -42,7 +42,7 @@ const Body = () => {
         return setFilterListOfRes(searchRes);
     }
 
-    return listOfRes.length === 0 ?
+    return listOfRes?.length === 0 ?
         (<Simmer />) : (
             <div className="body">
                 <div className="header_of_body">

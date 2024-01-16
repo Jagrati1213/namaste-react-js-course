@@ -221,3 +221,17 @@
  a {
      text-decoration: none;
  }
+
+ .about {
+     min-height: 100vh;
+     background-color: var(--body);
+     padding: 2rem;
+ }
+
+ .about h1 {
+     margin: 0;
+ }
+
+ .user-card-container {
+     margin: 2rem 0;
+ }

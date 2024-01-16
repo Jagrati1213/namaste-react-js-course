@@ -125,6 +125,8 @@ var Greeting = createReactClass({
 ## useEffect 👍:
 
 - Used when we want to render anything after the component rendering.
+- If we don't passed dependency array it will called at every rendering.
+- If we pass array dependency, than whenever the dependency change it will re-render.
 
 ## Fetch :
 
@@ -223,3 +225,27 @@ var Greeting = createReactClass({
 - Whenever state change it re-render the particular component instead only render that state.
 - Whenever state change the component re-render.
 - Resolve search error that he taught.
+
+# Episode 7:
+
+## React-Router-DOM
+
+- use to navigate the pages without page re-loading.
+- They used `Client side scripting` where we don't need to send server call for rendering page.
+- In V6.4, Router implements different router function.
+- `createBrowserRouter` is recommended to use because they gives full url and control browser history.
+- `Outlets` used to render parent child in DOM.
+
+## 2 types of routing:
+
+- `client side rendering` : when we render data without network/server calling.
+- `server side rendering` : when we render data with network/server calling.
+
+## IMP Notes:
+
+- React JS is a **Single Page Routing**.
+- That's why they increase user experience and faster.
+
+## Today work
+
+- (Extra) - Create a login Page using Formik Library

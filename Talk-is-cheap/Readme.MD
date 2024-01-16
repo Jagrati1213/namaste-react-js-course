@@ -246,6 +246,62 @@ var Greeting = createReactClass({
 - React JS is a **Single Page Routing**.
 - That's why they increase user experience and faster.
 
-## Today work
+# Episode-8 📁:
 
-- (Extra) - Create a login Page using Formik Library
+## Class Component:
+
+- same as Javascript class based.
+- In React we used `extends` keyword to inherit all things from the parent component.
+- `Constructor` used to get all properties from the parent component.
+- `super` will call the constructor of its parent class, This is required when you need to access some variables from the parent class. It is important to call super before the object initializes i.e, before using this.state in the constructor if it’s not there then the code gives a bug
+
+## Life Cycle Of Class Component 👍:
+
+1. Mounting
+
+   - Constructor Called
+   - Render Called (update Dom with default values)
+   - ComponentDidMount Called ( api called and state update with api data)
+
+2. Updating
+
+   - Render called (with Api data)
+   - Dom updated with new data
+   - ComponentDidUpdate Called
+
+3. UnMounting
+
+- Called when we go to another page
+
+```
+ <h1>Life cycle for multi child </h1>
+ - parent constructor called
+ - parent render called
+   - first constructor called
+   - first render called
+
+   - second constructor called
+   - second render called
+
+   <Dom Update -- In Single commit>
+   - first componentDidMount called
+   - second componentDidMount called
+
+- parent ComponentDidMount Called
+```
+
+## ComponentDidMount :
+
+- Used to call apis in react js.
+
+## ComponentDidUpdate :
+
+- Called after componentDidMount
+
+## ComponentWillMount:
+
+- called to stop re-rendering the component, if we go to another page.
+
+## can't Call async in useEffect
+
+- Because Async return promise and useEffect return either callback function or nothing.

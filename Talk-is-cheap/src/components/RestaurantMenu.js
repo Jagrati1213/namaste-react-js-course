@@ -1,24 +1,12 @@
 import { Divider, Flex, Space, Collapse } from 'antd';
-import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { SWIGGY_MENU_API } from '../utils/constants';
 import Simmer from './Simmer';
+import useRestaurantMenu from '../utils/useRestaurantMenu';
 
 const RestaurantMenu = () => {
 
-    const [resMenuList, setResMenuList] = useState(null);
     const { resId } = useParams();
-
-    useEffect(() => {
-        window.scrollTo(0, 0);
-        fetchMenuList();
-    }, []);
-
-    const fetchMenuList = async () => {
-        const data = await fetch(`${SWIGGY_MENU_API}${resId}`);
-        const response = await data.json();
-        setResMenuList(response?.data);
-    }
+    const resMenuList = useRestaurantMenu({ resId });
 
     // this condition, check if we have data or not then after it's start destructuring array;
     if (resMenuList === null) return <Simmer />;

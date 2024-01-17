@@ -40,21 +40,22 @@ const RestaurantMenu = () => {
                     cards.slice(1).map((item) => {
 
                         if (item?.card?.card?.title !== undefined) {
-                            return <Collapse key={item?.card?.card?.title + Math.random().toString()} items={
-                                [{
+                            return <Collapse key={item?.card?.card?.title + Math.random().toString()}
+                                items={[{
                                     key: item?.card?.card?.title + (Math.random() * 5).toString(),
                                     label: `${item?.card?.card?.title} ( ${item?.card?.card?.itemCards?.length})`,
                                     children: item?.card?.card?.itemCards?.map((childCard) => {
                                         return <ul key={childCard?.card?.info?.id} className='menu-items'>
                                             <li >
                                                 <h4>{childCard?.card?.info?.name}</h4>
-                                                <p>{childCard?.card?.info?.price / 100 || childCard?.card?.info?.defaultPrice / 100}</p>
+                                                <p>{childCard?.card?.info?.price / 100 || childCard?.card?.info?.defaultPrice / 100} price</p>
 
                                             </li>
                                         </ul>
                                     }),
 
-                                }]} defaultActiveKey={['1']} />
+                                }]}
+                                defaultActiveKey={['1']} />
                         }
                     })
                 }

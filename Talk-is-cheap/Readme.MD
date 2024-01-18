@@ -305,3 +305,19 @@ var Greeting = createReactClass({
 ## can't Call async in useEffect
 
 - Because Async return promise and useEffect return either callback function or nothing.
+
+# Episode-9 📁:
+
+## Custom Hooks:
+
+- start with `use` word, so react can understand that this is hooks.
+- It just a utility function.
+- for creating hooks first you need to understand what we need as i/p or o/p.
+
+## Bundlers:
+
+- chunking
+- code splitting
+- dynamic bundler
+- lazy loading
+- on demand loading

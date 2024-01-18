@@ -19,12 +19,11 @@ const Body = () => {
         searchFilterResHandler,
         searchText,
         setSearchText } = useSwiggyApi();
-
     const onlineStatus = useOnlineStatus();
 
     if (onlineStatus === false) return <h1>Looks you are offline, please check your connection</h1>
 
-    return listOfRes === null ?
+    return !listOfRes ?
         (<Simmer />) :
         (<div className="body">
             <div className="header_of_body">

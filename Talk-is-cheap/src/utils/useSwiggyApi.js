@@ -6,10 +6,6 @@ const useSwiggyApi = () => {
     const [filterListOfRes, setFilterListOfRes] = useState(null); //copy
     const [searchText, setSearchText] = useState('');
 
-    useEffect(() => {
-        fetchData();
-    }, []);
-
     const fetchData = async () => {
         try {
             const data = await fetch(SWIGGY_API);
@@ -23,6 +19,10 @@ const useSwiggyApi = () => {
             console.error('Error fetching data from Swiggy API:', error);
         }
     };
+
+    useEffect(() => {
+        fetchData();
+    }, []);
 
     const searchFilterResHandler = () => {
         // Perform search logic based on the searchText

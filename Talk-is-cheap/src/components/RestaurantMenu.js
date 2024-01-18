@@ -9,7 +9,7 @@ const RestaurantMenu = () => {
     const resMenuList = useRestaurantMenu({ resId });
 
     // this condition, check if we have data or not then after it's start destructuring array;
-    if (resMenuList === null) return <Simmer />;
+    if (!resMenuList) return <Simmer />;
 
     // get Details from the RestaurantMenuList
     const { name, costForTwoMessage, sla, areaName, avgRating } = resMenuList?.cards[2]?.card?.card?.info;

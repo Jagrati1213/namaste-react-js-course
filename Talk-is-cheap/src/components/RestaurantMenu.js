@@ -12,8 +12,8 @@ const RestaurantMenu = () => {
     if (resMenuList === null) return <Simmer />;
 
     // get Details from the RestaurantMenuList
-    const { name, costForTwoMessage, sla, areaName, avgRating } = resMenuList?.cards[0]?.card?.card?.info;
-    const { cards } = resMenuList?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR; //Menu List
+    const { name, costForTwoMessage, sla, areaName, avgRating } = resMenuList?.cards[2]?.card?.card?.info;
+    const { cards } = resMenuList?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR; //Menu List
 
     return (
         <div className='menu'>

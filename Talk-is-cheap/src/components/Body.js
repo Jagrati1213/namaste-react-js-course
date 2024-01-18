@@ -25,10 +25,11 @@ const Body = () => {
         try {
             const data = await fetch(SWIGGY_API);
             const response = await data.json();
-            const fetchLists = response.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+            const fetchLists = response.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
 
             setListOfRes(fetchLists);
             setFilterListOfRes(fetchLists);
+            console.log(fetchLists);
         } catch (error) {
             console.error('Error fetching data from Swiggy API:', error);
         }
@@ -47,7 +48,7 @@ const Body = () => {
 
     if (onlineStatus === false) return <h1>Looks you are offline, please check your connection</h1>
 
-    return listOfRes?.length === 0 ?
+    return listOfRes === null ?
         (<Simmer />) :
         (<div className="body">
             <div className="header_of_body">

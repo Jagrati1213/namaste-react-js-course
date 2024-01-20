@@ -1,12 +1,11 @@
 // import the data from another js
-import { useEffect, useState } from 'react';
 // import { resList } from '../utils/reslist';
-import ResCard from './ResCrad';
+import ResCard, { withLabelOfOpen } from './ResCrad';
 import Simmer from './Simmer';
-import { SWIGGY_API } from '../utils/constants';
 import { Link } from 'react-router-dom';
 import useOnlineStatus from '../utils/useOnlineStatus';
 import useSwiggyApi from '../utils/useSwiggyApi';
+
 
 const Body = () => {
 
@@ -19,9 +18,11 @@ const Body = () => {
         searchFilterResHandler,
         searchText,
         setSearchText } = useSwiggyApi();
-    const onlineStatus = useOnlineStatus();
 
+    const onlineStatus = useOnlineStatus();
     if (onlineStatus === false) return <h1>Looks you are offline, please check your connection</h1>
+
+    const RestaurantIsOpen = withLabelOfOpen(ResCard);
 
     return !listOfRes ?
         (<Simmer />) :
@@ -51,7 +52,9 @@ const Body = () => {
                         filterListOfRes?.map((item) => {
                             return (
                                 <Link key={item?.info.id} to={`/restaurants/${item?.info.id}`}>
-                                    <ResCard data={item} />
+                                    {
+                                        item?.info?.isOpen ? <RestaurantIsOpen data={item} /> : <ResCard data={item} />
+                                    }
                                 </Link>
                             )
                         })

@@ -43,8 +43,9 @@ const RestaurantMenu = () => {
                             return <Collapse key={item?.card?.card?.title + Math.random().toString()}
                                 items={[{
                                     key: item?.card?.card?.title + (Math.random() * 5).toString(),
-                                    label: `${item?.card?.card?.title} ( ${item?.card?.card?.itemCards?.length})`,
+                                    label: item?.card?.card?.title,
                                     children: item?.card?.card?.itemCards?.map((childCard) => {
+
                                         return <ul key={childCard?.card?.info?.id} className='menu-items'>
                                             <li >
                                                 <h4>{childCard?.card?.info?.name}</h4>

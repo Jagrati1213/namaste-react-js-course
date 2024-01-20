@@ -1,4 +1,5 @@
 import { CDN_URL } from "../utils/constants";
+import { Tag } from 'antd';
 
 const ResCard = ({ data }) => {
     // object destructuring
@@ -15,3 +16,13 @@ const ResCard = ({ data }) => {
 }
 
 export default ResCard;
+
+// Higher Order Component --> take a component and return a component
+export const withLabelOfOpen = (RestaurantCard) => {
+    return (props) => {
+        return <div>
+            <Tag color="magenta"> Open</Tag>
+            <RestaurantCard {...props} />
+        </div>
+    }
+}

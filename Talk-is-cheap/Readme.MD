@@ -321,3 +321,29 @@ var Greeting = createReactClass({
 - dynamic bundler
 - lazy loading
 - on demand loading
+
+# Episode 11:
+
+## Higher Order Component:
+
+- a function who take component and return a component.
+
+## Control Component 👍:
+
+- When component control by parent
+
+## unControl Component 👍:
+
+- When component control by itself
+
+## useContext :
+
+- When we need global data in our whole app/application, that time props drilling makes things hard.
+- So, with the help of context we can execute values from anywhere and modify them also.
+- In context we have 2 hooks : createContext(), useContext.
+- If we want to use context in class based component then we need consumer.
+- `Provider` use to update the value.
+
+## props drilling:
+
+- when we passed parent props to child than their inner child, that's called props drilling.

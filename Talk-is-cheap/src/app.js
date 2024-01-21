@@ -1,5 +1,5 @@
 // **** IMPORT THE REACT ****//
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, createContext, lazy, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import Header from './components/Header';
 import Body from './components/Body';
@@ -9,18 +9,32 @@ import Contact from './components/Contact';
 import Error from './components/Error';
 import { RouterProvider, createBrowserRouter, Outlet } from 'react-router-dom';
 import RestaurantMenu from './components/RestaurantMenu';
+import CurrentUserContext from './utils/Context';
+
+
 
 // Create Lazy loading
-const About = lazy(() => import('/components/About'));
+const About = lazy(() => import('./components/About'));
 
 // **** CREATE APP LAYOUT ****//
 const AppLayout = () => {
+
+    const [currentUser, setCurrentUser] = useState('jaggu');
+
     return (
+
         <div className="app">
-            <Header />
-            <Outlet />
-            <Footer />
-        </div>
+            <CurrentUserContext.Provider value={{
+                currentUser: currentUser,
+                setCurrentUser
+            }}>
+                <Header />
+                <Outlet />
+                <Footer />
+            </CurrentUserContext.Provider>
+        </div >
+
+
     )
 }
 
@@ -29,7 +43,6 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <AppLayout />,
-        errorElement: <Error />,
         children: [
             {
                 path: '/',
@@ -47,7 +60,8 @@ const router = createBrowserRouter([
                 path: '/restaurants/:resId',
                 element: <RestaurantMenu />
             }
-        ]
+        ],
+        errorElement: <Error />,
     },
 
 ])

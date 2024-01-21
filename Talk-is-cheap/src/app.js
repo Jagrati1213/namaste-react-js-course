@@ -21,20 +21,22 @@ const AppLayout = () => {
 
     const [currentUser, setCurrentUser] = useState('jaggu');
 
-    return (
+    useEffect(() => {
+        setCurrentUser('jagrati')
+    }, []);
 
-        <div className="app">
-            <CurrentUserContext.Provider value={{
-                currentUser: currentUser,
-                setCurrentUser
-            }}>
+    return (
+        <CurrentUserContext.Provider value={{
+            currentUser: currentUser,
+            setCurrentUser
+        }}>
+            <div className="app">
+
                 <Header />
                 <Outlet />
                 <Footer />
-            </CurrentUserContext.Provider>
-        </div >
-
-
+            </div >
+        </CurrentUserContext.Provider>
     )
 }
 
@@ -65,6 +67,7 @@ const router = createBrowserRouter([
     },
 
 ])
+
 // **** RENDERING APP INTO DOM ****//
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<RouterProvider router={router} />);

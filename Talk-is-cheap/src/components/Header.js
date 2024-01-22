@@ -2,9 +2,13 @@ import React, { useContext, useEffect, useState } from 'react';
 import { LOGO_URL } from "../utils/constants";
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+import { useSelector } from 'react-redux';
+import { Badge } from 'antd';
 
 const Header = () => {
-    const { name, setName } = useContext(AuthContext);
+    const { name } = useContext(AuthContext);
+    // subscribing to store
+    const cartItem = useSelector((store) => store.cart.item);
 
     return (
         <header className='header'>
@@ -16,6 +20,11 @@ const Header = () => {
                     <li><Link to={'/'}>Home</Link></li>
                     <li> <Link to={'/about'}>About</Link></li>
                     <li> <Link to={'/contact'}>Contact</Link></li>
+                    <li><Link to={'/cart'}>
+                        <Badge count={cartItem.length}>
+                            Cart
+                        </Badge>
+                    </Link></li>
                     <button className='login-btn'>{name}</button>
                 </ul>
             </div>

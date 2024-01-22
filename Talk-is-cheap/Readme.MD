@@ -347,3 +347,58 @@ var Greeting = createReactClass({
 ## props drilling:
 
 - when we passed parent props to child than their inner child, that's called props drilling.
+
+# Episode 12:
+
+## Redux 👍:
+
+- usage for huge website where we need multiple state as globally.
+- it just like a store.
+- Redux are immutable(non-changeable).
+- we need to destructuring state for update.
+
+## How Redux works :
+
+- AddToCart --> dispatch(action) --> reducer fun()
+- cartIndexShow --> subscribing to store using UseSelector
+
+## redux-toolkit:
+
+- Make easy to understand redux.
+- They use `immer` for update the state.
+- we have configureStore - for creating single store
+- CreateSlice - use to create reducers
+
+## useContext vs Redux:
+
+- `UseContext` are hooks and `Redux` is a library
+- `useContext` use in small application and `Redux` use in large websites.
+- `useContext` are use for share data through component tree and `Redux` use for state management.
+- `useContext` are simple and `Redux` are complicated.
+
+## Advantage of using Redux Toolkit over Redux:
+
+- Redux tooklit make easier to create reducer and actions
+- RTK use `immer` toolkit for update the state
+-
+
+## Explain Dispatcher:
+
+- dispatch is a way to call reducer function to complete the task.
+
+## Explain Reducer:
+
+- Reducer is a object that collect all types of reducers like user, cart, payment.
+
+## Explain slice:
+
+- Slice is a object, handle all actions and state.
+
+## Explain selector:
+
+- Selector use to subscribing the state.
+
+## Explain createSlice and the configuration it takes:
+
+- CreateSlice is a function that take object of initial state and actions. So, we can pass that slice into our store, for making accessible for whole website.
+- configureStore is a function use to create a store with their reducer.

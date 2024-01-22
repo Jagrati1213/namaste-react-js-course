@@ -9,34 +9,25 @@ import Contact from './components/Contact';
 import Error from './components/Error';
 import { RouterProvider, createBrowserRouter, Outlet } from 'react-router-dom';
 import RestaurantMenu from './components/RestaurantMenu';
-import CurrentUserContext from './utils/Context';
-
-
-
+import { AuthContext } from './context/AuthContext';
 // Create Lazy loading
 const About = lazy(() => import('./components/About'));
 
 // **** CREATE APP LAYOUT ****//
 const AppLayout = () => {
-
-    const [currentUser, setCurrentUser] = useState('jaggu');
-
-    useEffect(() => {
-        setCurrentUser('jagrati')
-    }, []);
-
+    const [name, setName] = useState(null);
     return (
-        <CurrentUserContext.Provider value={{
-            currentUser: currentUser,
-            setCurrentUser
+        <AuthContext.Provider value={{
+            name,
+            setName
         }}>
             <div className="app">
-
                 <Header />
                 <Outlet />
                 <Footer />
             </div >
-        </CurrentUserContext.Provider>
+        </AuthContext.Provider>
+
     )
 }
 

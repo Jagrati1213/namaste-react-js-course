@@ -10,23 +10,29 @@ import Error from './components/Error';
 import { RouterProvider, createBrowserRouter, Outlet } from 'react-router-dom';
 import RestaurantMenu from './components/RestaurantMenu';
 import { AuthContext } from './context/AuthContext';
+import { Provider } from 'react-redux';
+import { appStore } from './redux-store/store';
+import Cart from './components/Cart';
 // Create Lazy loading
 const About = lazy(() => import('./components/About'));
 
 // **** CREATE APP LAYOUT ****//
 const AppLayout = () => {
-    const [name, setName] = useState(null);
+    const [name, setName] = useState('jagrati');
     return (
-        <AuthContext.Provider value={{
-            name,
-            setName
-        }}>
-            <div className="app">
-                <Header />
-                <Outlet />
-                <Footer />
-            </div >
-        </AuthContext.Provider>
+        <Provider store={appStore}>
+            <AuthContext.Provider value={{
+                name,
+                setName
+            }}>
+                <div className="app">
+                    <Header />
+                    <Outlet />
+                    <Footer />
+                </div >
+            </AuthContext.Provider>
+        </Provider>
+
 
     )
 }
@@ -52,6 +58,11 @@ const router = createBrowserRouter([
             {
                 path: '/restaurants/:resId',
                 element: <RestaurantMenu />
+            },
+            {
+                path: '/cart',
+                element: <Cart />
+
             }
         ],
         errorElement: <Error />,

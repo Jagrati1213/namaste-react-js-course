@@ -5,7 +5,7 @@ const ResCard = ({ data }) => {
     // object destructuring
     const { avgRating, name, cuisines, cloudinaryImageId, sla, costForTwo } = data?.info;
     return (
-        <div className='res-card'>
+        <div className='res-card' data-testid='resCard'>
             <img src={`${CDN_URL}/${cloudinaryImageId}`} alt="res-logo" className='res-logo' />
             <h2>{name}</h2>
             <p>{cuisines.join(', ')}</p>

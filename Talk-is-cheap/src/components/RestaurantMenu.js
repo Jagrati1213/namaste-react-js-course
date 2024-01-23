@@ -11,16 +11,18 @@ const RestaurantMenu = () => {
     const resMenuList = useRestaurantMenu({ resId });
     const dispatch = useDispatch();
 
+    console.log(resMenuList);
     // this condition, check if we have data or not then after it's start destructuring array;
-    if (!resMenuList) return <Simmer />;
+    if (resMenuList === null) return <Simmer />;
 
     // get Details from the RestaurantMenuList
-    const { name, costForTwoMessage, sla, areaName, avgRating } = resMenuList?.cards[2]?.card?.card?.info;
-    const { cards } = resMenuList?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR; //Menu List
+    const { name, costForTwoMessage, sla, areaName, avgRating } = resMenuList?.cards[0]?.card?.card?.info ?? {};
+    const { cards } = resMenuList?.cards[resMenuList?.cards?.length - 1]?.groupedCard?.cardGroupMap?.REGULAR; //Menu List
 
     const handleAddToCart = (item) => {
         dispatch(addItem(item));
     }
+
     return (
         <div className='menu'>
             {/* Restaurant tag-details */}
@@ -53,7 +55,7 @@ const RestaurantMenu = () => {
                                     children: item?.card?.card?.itemCards?.map((childCard) => {
 
                                         return <ul key={childCard?.card?.info?.id} className='menu-items'>
-                                            <li style={{ justifyContent: 'space-between', display: 'flex' }}>
+                                            <li style={{ justifyContent: 'space-between', display: 'flex' }} data-testid='foodItem'>
                                                 <div>
                                                     <h4>{childCard?.card?.info?.name}</h4>
                                                     <p>{childCard?.card?.info?.price / 100 || childCard?.card?.info?.defaultPrice / 100} price</p>

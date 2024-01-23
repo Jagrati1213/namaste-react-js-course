@@ -5,14 +5,17 @@ import Simmer from './Simmer';
 import { Link } from 'react-router-dom';
 import useOnlineStatus from '../utils/useOnlineStatus';
 import useSwiggyApi from '../utils/useSwiggyApi';
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../context/AuthContext';
+import { SWIGGY_API } from '../utils/constants';
 
 
 const Body = () => {
 
     // Take Context api
     const { name, setName } = useContext(AuthContext);
+    const RestaurantIsOpen = withLabelOfOpen(ResCard);
+
     // state for Restaurants list from custom Hook
     const {
         listOfRes,
@@ -25,17 +28,13 @@ const Body = () => {
     const onlineStatus = useOnlineStatus();
     if (onlineStatus === false) return <h1>Looks you are offline, please check your connection</h1>
 
-    const RestaurantIsOpen = withLabelOfOpen(ResCard);
-
-
-
     return !listOfRes ?
         (<Simmer />) :
         (<div className="body">
             <div className="header_of_body">
                 {/* Search Box */}
                 <div className="search-container">
-                    <input type="search" value={searchText}
+                    <input type="search" data-testid='searchInput' value={searchText}
                         onChange={(e) => {
                             setSearchText(e.target.value)
                         }}
@@ -45,7 +44,7 @@ const Body = () => {
                 </div>
 
                 {/* Filter Button */}
-                <button className='filter-btn' onClick={topRatedFilterHandler}>
+                <button className='filter-btn' onClick={topRatedFilterHandler} data-testid='filterBtn'>
                     Top Rated Restaurants
                 </button>
 

@@ -7,17 +7,13 @@ const useSwiggyApi = () => {
     const [searchText, setSearchText] = useState('');
 
     const fetchData = async () => {
-        try {
-            const data = await fetch(SWIGGY_API);
-            const response = await data.json();
-            const fetchLists = response.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+        const data = await fetch(SWIGGY_API);
+        const response = await data?.json();
+        const fetchLists = response.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
 
-            setListOfRes(fetchLists);
-            setFilterListOfRes(fetchLists);
-            console.log(fetchLists);
-        } catch (error) {
-            console.error('Error fetching data from Swiggy API:', error);
-        }
+        setListOfRes(fetchLists);
+        setFilterListOfRes(fetchLists);
+        console.log(fetchLists);
     };
 
     useEffect(() => {

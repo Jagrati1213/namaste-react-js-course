@@ -1,9 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { LOGO_URL } from "../utils/constants";
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import { useSelector } from 'react-redux';
-import { Badge } from 'antd';
 
 const Header = () => {
     const { name } = useContext(AuthContext);
@@ -21,9 +20,7 @@ const Header = () => {
                     <li> <Link to={'/about'}>About</Link></li>
                     <li> <Link to={'/contact'}>Contact</Link></li>
                     <li><Link to={'/cart'}>
-                        <Badge count={cartItem.length}>
-                            Cart
-                        </Badge>
+                        Cart - {cartItem.length}
                     </Link></li>
                     <button className='login-btn'>{name}</button>
                 </ul>

@@ -1,0 +1,70 @@
+{
+    "info": {
+        "id": "74644",
+        "name": "Burger King",
+        "cloudinaryImageId": "e33e1d3ba7d6b2bb0d45e1001b731fcf",
+        "locality": "VIP Road",
+        "areaName": "Vesu",
+        "costForTwo": "₹350 for two",
+        "cuisines": [
+            "Burgers",
+            "American"
+        ],
+        "avgRating": 4.4,
+        "parentId": "166",
+        "avgRatingString": "4.4",
+        "totalRatingsString": "10K+",
+        "sla": {
+            "deliveryTime": 32,
+            "lastMileTravel": 6.3,
+            "serviceability": "SERVICEABLE",
+            "slaString": "32 mins",
+            "lastMileTravelString": "6.3 km",
+            "iconType": "ICON_TYPE_EMPTY"
+        },
+        "availability": {
+            "nextCloseTime": "2024-01-24 03:00:00",
+            "opened": true
+        },
+        "badges": {},
+        "isOpen": true,
+        "type": "F",
+        "badgesV2": {
+            "entityBadges": {
+                "imageBased": {},
+                "textBased": {},
+                "textExtendedBadges": {}
+            }
+        },
+        "aggregatedDiscountInfoV3": {
+            "header": "ITEMS",
+            "subHeader": "AT ₹129"
+        },
+        "orderabilityCommunication": {
+            "title": {},
+            "subTitle": {},
+            "message": {},
+            "customIcon": {}
+        },
+        "differentiatedUi": {
+            "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+            "differentiatedUiMediaDetails": {
+                "mediaType": "ADS_MEDIA_ENUM_IMAGE",
+                "lottie": {},
+                "video": {}
+            }
+        },
+        "reviewsSummary": {},
+        "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+        "restaurantOfferPresentationInfo": {}
+    },
+    "analytics": {
+        "context": "seo-data-15564f41-e5a5-451a-97d0-db792ea51dd5"
+    },
+    "cta": {
+        "link": "https://www.swiggy.com/restaurants/burger-king-vip-road-vesu-surat-74644",
+        "text": "RESTAURANT_MENU",
+        "type": "WEBLINK"
+    },
+    "widgetId": "collectionV5RestaurantListWidget_SimRestoRelevance_food_seo"
+}

@@ -322,7 +322,7 @@ var Greeting = createReactClass({
 - lazy loading
 - on demand loading
 
-# Episode 11:
+# Episode 11 📁:
 
 ## Higher Order Component:
 
@@ -348,7 +348,7 @@ var Greeting = createReactClass({
 
 - when we passed parent props to child than their inner child, that's called props drilling.
 
-# Episode 12:
+# Episode 12 📁:
 
 ## Redux 👍:
 
@@ -402,3 +402,34 @@ var Greeting = createReactClass({
 
 - CreateSlice is a function that take object of initial state and actions. So, we can pass that slice into our store, for making accessible for whole website.
 - configureStore is a function use to create a store with their reducer.
+
+# Episode-13 📁:
+
+## Testing
+
+- Unit Testing
+- Integration Testing
+
+## JsDom :
+
+- It's not a browser but behaves like browser.
+
+## Dunder :
+
+- `__` is known as dunder
+
+## SetUp 👍:
+
+- install react testing library
+- install jest
+- install babel dependency
+- config babel
+- config parcel -- to disable Babel transpilation in Parcel
+- jest config -- `npx jest --init`
+- Install @babel/preset-react and add to babel.config.js file with runtime:'automatic' -- To make JSX works in test
+- install @testing-library/jest-dom - to make dom element test
+
+## For testing fetch 👍:
+
+- we use jest.fn() for mock fetch function.
+- Because fetch comes from the browser.

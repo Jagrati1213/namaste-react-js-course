@@ -6,7 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Login from './components/login/Login';
 import Browse from './components/browse/Browse';
-
+import { Provider } from 'react-redux'
+import { appStore } from './utils/redux/store';
 // create routing for web
 const appRouter = createBrowserRouter([
   {
@@ -28,7 +29,11 @@ const appRouter = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={appRouter}> <App /></RouterProvider>
+    <RouterProvider router={appRouter}>
+      <Provider store={appStore}>
+        <App />
+      </Provider>
+    </RouterProvider>
   </React.StrictMode>
 );
 reportWebVitals();

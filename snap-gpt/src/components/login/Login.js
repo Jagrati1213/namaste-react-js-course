@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-import { CheckValidationOfSignIn, CheckValidationOfSignUp } from '../../utils/Validation';
+import { CheckValidationOfForm } from '../../utils/Validation';
 
 function Login() {
 
@@ -31,8 +31,8 @@ function Login() {
         let message = '';
 
         // Check according the signIn and signUp
-        if (isSignInForm) message = CheckValidationOfSignIn(email.current.value, password.current.value);
-        else message = CheckValidationOfSignUp(name.current.value, email.current.value, password.current.value);
+        if (isSignInForm) message = CheckValidationOfForm(null, email.current.value, password.current.value);
+        else message = CheckValidationOfForm(name.current.value, email.current.value, password.current.value);
 
         // Set error message
         setErrorMessage(message);

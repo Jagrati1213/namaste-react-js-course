@@ -1,5 +1,7 @@
 import React, { useRef, useState } from 'react'
 import { CheckValidationOfForm } from '../../utils/Validation';
+import { auth } from '../../utils/firebase/Firebase';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 
 function Login() {
 
@@ -36,6 +38,37 @@ function Login() {
 
         // Set error message
         setErrorMessage(message);
+        if (message) return;
+
+        // Firebase signIn & signUp Logic
+        if (!isSignInForm) {
+            // SignUp Logic
+            createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+                    console.log(user);
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    setErrorMessage(errorMessage)
+                });
+        }
+        else {
+            // SignIn Logic
+            signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+                    console.log(user);
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    setErrorMessage(errorMessage);
+                });
+        }
+
+
     }
     return (
         <div className='w-full p-10 flex justify-center text-white'>

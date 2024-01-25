@@ -1,15 +1,39 @@
+import React, { useEffect } from 'react'
 import Body from './components/body/Body';
 import Header from './components/header/Header';
-import { FILM_CHICKS_BACKGROUND_IMG } from './utils/Constant';
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from './utils/firebase/Firebase';
+import { useDispatch } from 'react-redux';
+import { addUser, removeUser } from './utils/redux/slice/UserSlice';
+import { useNavigate } from 'react-router-dom';
 
 function App() {
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+
+    // onAuthStateChanged : run whenever user signIn & signOut
+    onAuthStateChanged(auth, (user) => {
+      // User is signed in
+      if (user) {
+        const { uid, displayName, email } = user;
+        console.log(user);
+        dispatch(addUser({ uid: uid, email: email, displayName: displayName }));
+        navigate('/browse');
+      }
+      else {
+        // User is signed out
+        dispatch(removeUser());
+        navigate('/');
+      }
+    });
+  }, []);
 
   return (
     <div className='app w-full bg-black min-h-[100vh]'>
       <Header />
-      <div className='h-fit'>
-        <img src={FILM_CHICKS_BACKGROUND_IMG} alt="background" className='absolute top-0 opacity-[0.4] h-full w-full object-cover' />
-      </div>
       <Body />
       <div>Footer</div>
     </div>

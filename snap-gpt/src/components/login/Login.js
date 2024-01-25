@@ -8,7 +8,7 @@ function Login() {
     }
     return (
         <div className='w-full p-10 flex justify-center text-white'>
-            <form className="login_container sm:w-full md:w-8/12 xl:w-4/12 bg-black bg-opacity-70 p-10">
+            <form className="login_container sm:w-full md:w-8/12 xl:w-3/12 bg-black bg-opacity-70 p-10">
                 <h3 className='text-2xl md:text-3xl font-semibold my-3 md:my-6'>
                     {isSignInForm ? 'SignIn' : 'SignUp'}
                 </h3>

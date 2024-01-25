@@ -1,24 +1,56 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
+import { CheckValidationOfSignIn, CheckValidationOfSignUp } from '../../utils/Validation';
 
 function Login() {
-    const [isSignInForm, setIsSignInForm] = useState(true);
 
+    const [isSignInForm, setIsSignInForm] = useState(true); // Toggle state
+    const [errorMessage, setErrorMessage] = useState(null);// Error state
+
+    // Create reference for form fields
+    const name = useRef(null);
+    const email = useRef(null);
+    const password = useRef(null);
+
+
+    // Toggle SignIn to SignUp
     const toggleSignInForm = () => {
         setIsSignInForm(!isSignInForm);
+
+        // Reset input values after toggle
+        if (!isSignInForm) name.current.value = '';
+        email.current.value = '';
+        password.current.value = '';
+        setErrorMessage(null);
+    }
+
+    // From submission method
+    const handleOnsubmit = (e) => {
+
+        // refuse auto submission
+        e.preventDefault();
+        let message = '';
+
+        // Check according the signIn and signUp
+        if (isSignInForm) message = CheckValidationOfSignIn(email.current.value, password.current.value);
+        else message = CheckValidationOfSignUp(name.current.value, email.current.value, password.current.value);
+
+        // Set error message
+        setErrorMessage(message);
     }
     return (
         <div className='w-full p-10 flex justify-center text-white'>
-            <form className="login_container sm:w-full md:w-8/12 xl:w-3/12 bg-black bg-opacity-70 p-10">
+            <form onSubmit={handleOnsubmit} className="login_container sm:w-full md:w-8/12 lg:w-4/12 xl:w-3/12 bg-black bg-opacity-70 p-10">
                 <h3 className='text-2xl md:text-3xl font-semibold my-3 md:my-6'>
                     {isSignInForm ? 'SignIn' : 'SignUp'}
                 </h3>
                 {!isSignInForm &&
-                    <input type='text' placeholder='Full Name' className='bg-[#333] w-full my-4 py-3 px-4 rounded mb-5 focus:outline-green-500 focus:border-green-500' />
+                    <input ref={name} type='text' placeholder='Full Name' className='bg-[#333] w-full my-4 py-3 px-4 rounded mb-5 focus:outline-green-500 focus:border-green-500' />
                 }
-                <input type='text' placeholder='Email' className='bg-[#333] w-full my-4 py-3 px-4 rounded mb-5 focus:outline-green-500 focus:border-green-500' />
+                <input ref={email} type='text' placeholder='Email' className='bg-[#333] w-full my-4 py-3 px-4 rounded mb-5 focus:outline-green-500 focus:border-green-500' />
 
-                <input type='password' placeholder='Password' className='bg-[#333] w-full my-4 py-3 px-4 rounded mb-5 focus:outline-green-500 focus:border-green-500' />
+                <input ref={password} type='password' placeholder='Password' className='bg-[#333] w-full my-4 py-3 px-4 rounded mb-5 focus:outline-green-500 focus:border-green-500' />
 
+                <p className='text-red-400 font-semibold text-xs md:text-base py-4'>{errorMessage}</p>
                 <button className='bg-green-500 hover:bg-green-700 font-semibold text-white py-4 px-2 w-full text-xl rounded mb-5'>
                     {isSignInForm ? 'SignIn' : 'SignUp'}
                 </button>

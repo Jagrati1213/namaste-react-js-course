@@ -15,12 +15,12 @@ function App() {
   useEffect(() => {
 
     // onAuthStateChanged : run whenever user signIn & signOut
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       // User is signed in
       if (user) {
-        const { uid, displayName, email } = user;
+        const { uid, displayName, email, photoURL } = user;
         console.log(user);
-        dispatch(addUser({ uid: uid, email: email, displayName: displayName }));
+        dispatch(addUser({ uid: uid, email: email, displayName: displayName, photoURL: photoURL }));
         navigate('/browse');
       }
       else {
@@ -29,6 +29,9 @@ function App() {
         navigate('/');
       }
     });
+
+    // unsubscribe when we unmount the element 
+    return () => unsubscribe();
   }, []);
 
   return (

@@ -17,7 +17,7 @@ function Login() {
     const email = useRef(null);
     const password = useRef(null);
 
-    // Navigate hook
+    // Navigate hook && dispatch
     const navigate = useNavigate();
     const dispatch = useDispatch();
 

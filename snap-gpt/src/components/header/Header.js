@@ -28,7 +28,7 @@ function Header() {
                 user !== null &&
                 (<div className="container_of_avatar_and_signout flex">
                     <div className='bg-red-600 w-10 rounded'>
-                        <img src={FILM_CHICKS_AVTAR_IMG} className='w-full object-cover rounded' alt="film_clicks_avatar" />
+                        <img src={user.photoURL} className='w-full object-cover rounded' alt="film_clicks_avatar" />
                     </div>
                     <button onClick={handleSignOut} className='bg-green-600 rounded px-4 mx-5 font-bold'>SignOut</button>
                 </div>)

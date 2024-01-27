@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react'
 import { CheckValidationOfForm } from '../../utils/Validation';
 import { auth } from '../../utils/firebase/Firebase';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import { FILM_CHICKS_BACKGROUND_IMG } from '../../utils/Constant';
+import { FILM_CHICKS_AVTAR_IMG, FILM_CHICKS_BACKGROUND_IMG } from '../../utils/Constant';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../../utils/redux/slice/UserSlice';
@@ -55,11 +55,12 @@ function Login() {
                     const user = userCredential.user;
 
                     updateProfile(user, {
-                        displayName: name.current.value
+                        displayName: name.current.value,
+                        photoURL: FILM_CHICKS_AVTAR_IMG
                     }).then(() => {
                         // Profile updated! Now need to update the store user
-                        const { uid, displayName, email } = auth.currentUser; //update profile store in auth not in User
-                        dispatch(addUser({ uid: uid, email: email, displayName: displayName }));
+                        const { uid, displayName, email, photoURL } = auth.currentUser; //update profile store in auth not in User
+                        dispatch(addUser({ uid: uid, email: email, displayName: displayName, photoURL: photoURL }));
                         navigate('/browse');
                     }).catch((error) => {
                         // An error occurred

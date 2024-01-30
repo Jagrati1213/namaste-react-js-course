@@ -12,3 +12,14 @@ export const API_OPTIONS = {
         Authorization: process.env.REACT_APP_API_OPTIONS_AUTH_TOKEN
     }
 };
+
+export const SUPPORTED_LANGUAGES = [
+    {
+        name: 'English',
+        value: 'en'
+    },
+    {
+        name: 'Hindi',
+        value: 'hindi'
+    }
+]

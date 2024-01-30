@@ -1,6 +1,8 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { useGetNowPlayingMovies } from '../../utils/hooks/useGetNowPlayingMovies';
+import { MainContainer } from '../mainContainer/MainContainer';
+import { SecondaryContainer } from '../secondaryContainer/SecondaryContainer';
 
 function Browse() {
 
@@ -9,7 +11,10 @@ function Browse() {
     useGetNowPlayingMovies();
 
     return (
-        <div className='text-white'>{user?.displayName}</div>
+        <div>
+            <MainContainer />
+            <SecondaryContainer />
+        </div>
     )
 }
 

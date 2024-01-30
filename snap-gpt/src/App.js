@@ -19,7 +19,7 @@ function App() {
       // User is signed in
       if (user) {
         const { uid, displayName, email, photoURL } = user;
-        console.log(user);
+        // console.log(user);
         dispatch(addUser({ uid: uid, email: email, displayName: displayName, photoURL: photoURL }));
         navigate('/browse');
       }
@@ -35,10 +35,9 @@ function App() {
   }, []);
 
   return (
-    <div className='app w-full bg-black min-h-[100vh]'>
+    <div className='app w-full min-h-[100vh] relative overflow-x-hidden'>
       <Header />
       <Body />
-      <div>Footer</div>
     </div>
   );
 }

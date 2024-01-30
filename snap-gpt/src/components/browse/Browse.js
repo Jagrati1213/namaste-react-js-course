@@ -5,19 +5,29 @@ import { MainContainer } from '../mainContainer/MainContainer';
 import { SecondaryContainer } from '../secondaryContainer/SecondaryContainer';
 import { useGetTopRatedMovie } from '../../utils/hooks/useGetTopRatedMovie';
 import { useGetUpComingMovies } from '../../utils/hooks/useGetUpComingMovies';
+import { Recommendation } from '../recommendation/Recommendation';
 
 function Browse() {
 
-    const user = useSelector((store) => store.user);
-    // Called the method
+    // Get Gpt from the store state
+    const gpt = useSelector((store) => store.gpt);
+
+    // Called the method from movieSlice
     useGetNowPlayingMovies();
     useGetTopRatedMovie();
     useGetUpComingMovies();
 
     return (
         <div>
-            <MainContainer />
-            <SecondaryContainer />
+            {
+                gpt.showRecommendation === true ?
+                    <Recommendation /> :
+                    <>
+                        <MainContainer />
+                        <SecondaryContainer />
+                    </>
+            }
+
         </div>
     )
 }

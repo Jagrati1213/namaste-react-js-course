@@ -22,7 +22,7 @@ function Header() {
         });
     }
     return (
-        <header className='p-5 relative z-10 bg-gradient-to-b from-black flex justify-between items-center text-white'>
+        <header className='fixed top-0 p-5 w-full z-10 bg-gradient-to-b from-black flex justify-between items-center text-white'>
             <h3 className='text-3xl md:text-4xl lg:text-5xl font-extrabold italic text-green-500 tracking-wide'>FilmChicks</h3>
             {
                 user !== null &&

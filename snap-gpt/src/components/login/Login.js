@@ -93,7 +93,7 @@ function Login() {
                 <img src={FILM_CHICKS_BACKGROUND_IMG} alt="background" className='absolute top-0 bg-black h-full w-full object-cover' />
             </div>
             {/* Form Part */}
-            <div className='w-full p-10 flex justify-center text-white'>
+            <div className='w-full p-10 mt-28 flex justify-center text-white'>
                 <form onSubmit={handleOnsubmit} className="login_container sm:w-full md:w-8/12 lg:w-4/12 xl:w-3/12 bg-black bg-opacity-80 p-10 z-20">
                     <h3 className='text-2xl md:text-3xl font-semibold my-3 md:my-6'>
                         {isSignInForm ? 'SignIn' : 'SignUp'}

@@ -2,12 +2,12 @@ export const FILM_CHICKS_BACKGROUND_IMG = 'https://assets.nflxext.com/ffe/siteui
 
 export const FILM_CHICKS_AVTAR_IMG = 'https://i.pinimg.com/originals/34/62/d2/3462d27440aa255b1c314ff16f4032b4.png';
 
-export const TMDB_API_KEY = '56c2da6fcd6b877bb5d204c9278cbd3b';
+export const TMDB_API_KEY = process.env.REACT_APP_TMDB_API_KEY;
 
 export const API_OPTIONS = {
     method: 'GET',
     headers: {
         accept: 'application/json',
-        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NmMyZGE2ZmNkNmI4NzdiYjVkMjA0YzkyNzhjYmQzYiIsInN1YiI6IjY1YjQ5ZjJmNjBjNTFkMDE0OGQwMmNlYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.zwjTXoU3_FSOcgJycbEUkh3dLR4BrR3H6zejo5wnTO8'
+        Authorization: process.env.REACT_APP_API_OPTIONS_AUTH_TOKEN
     }
 };

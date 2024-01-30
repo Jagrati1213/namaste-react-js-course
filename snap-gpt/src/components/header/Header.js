@@ -43,11 +43,11 @@ function Header() {
                 user !== null &&
                 (<div className="container_of_avatar_and_signout flex gap-3">
 
-                    <select className='bg-black text-white px-5 border-2 border-solid border-yellow-800 focus:border-yellow-800 rounded-sm' onChange={handleLanguageChange}>
+                    {gpt.showRecommendation && <select className='bg-gray-600 text-white px-5 border-2 border-solid border-yellow-800 focus:border-yellow-800 rounded-sm' onChange={handleLanguageChange}>
                         {
                             SUPPORTED_LANGUAGES.map((lang, index) => <option key={index} value={lang.value}>{lang.name}</option>)
                         }
-                    </select>
+                    </select>}
                     <button onClick={handleToggleRecommendationView} className='px-6 py-2 bg-yellow-700 hover:bg-yellow-600 font-bold text-white rounded-sm mr-2'>
                         {!gpt.showRecommendation ? 'Get Recommendation' : 'Back to Home'}
                     </button>

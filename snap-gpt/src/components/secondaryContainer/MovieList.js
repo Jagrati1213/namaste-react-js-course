@@ -10,7 +10,7 @@ function MovieList({ title, movies }) {
             <div className='py-10 text-2xl font-bold'>
                 <h1>{title}</h1>
             </div>
-            <div className='flex overflow-x-scroll gap-4'>
+            <div className='flex overflow-x-scroll overflow-y-hidden gap-4'>
                 {
                     movies?.map((movie) => {
                         return <MovieCard key={movie?.id} imageUrl={movie?.poster_path} />

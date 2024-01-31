@@ -3,6 +3,10 @@ import { useDispatch } from "react-redux";
 import { addUpComingsMovies } from "../redux/slice/MovieSlice";
 import { API_OPTIONS } from "../Constant";
 
+/** 
+ * A function that fetch upcoming movies from TMDB API, 
+ * and set the fetch data into movie's Redux store.
+ * */
 export const useGetUpComingMovies = () => {
     const dispatch = useDispatch();
 

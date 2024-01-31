@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { API_OPTIONS } from "../Constant";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addNowPlayingMovies } from "../redux/slice/MovieSlice";
 
 /** 
@@ -10,6 +10,7 @@ import { addNowPlayingMovies } from "../redux/slice/MovieSlice";
 export const useGetNowPlayingMovies = () => {
 
     const dispatch = useDispatch();
+    const nowPlayingMovies = useSelector((store) => store.movies.nowPlayingMovies);
 
     // Function to fetch TMDB data && set into store
     const handleGetNowPlayingMovie = async () => {
@@ -20,6 +21,6 @@ export const useGetNowPlayingMovies = () => {
 
     // Called method after component mount
     useEffect(() => {
-        handleGetNowPlayingMovie();
+        !nowPlayingMovies && handleGetNowPlayingMovie();
     }, []);
 }

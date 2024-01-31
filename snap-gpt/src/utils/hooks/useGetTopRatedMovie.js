@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { API_OPTIONS } from "../Constant";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addTopRatedMovies } from "../redux/slice/MovieSlice";
 
 /** 
@@ -10,6 +10,7 @@ import { addTopRatedMovies } from "../redux/slice/MovieSlice";
 export const useGetTopRatedMovie = () => {
 
     const dispatch = useDispatch();
+    const topRatedMovies = useSelector((store) => store.movies.topRatedMovies);
 
     // Function to fetch TMDB data && set into store
     const handleGetTopRatedMovie = async () => {
@@ -20,6 +21,6 @@ export const useGetTopRatedMovie = () => {
 
     // Called method after component mount
     useEffect(() => {
-        handleGetTopRatedMovie();
+        !topRatedMovies && handleGetTopRatedMovie();
     }, []);
 }

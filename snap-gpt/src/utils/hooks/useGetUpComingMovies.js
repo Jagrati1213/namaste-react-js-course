@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addUpComingsMovies } from "../redux/slice/MovieSlice";
 import { API_OPTIONS } from "../Constant";
 
@@ -9,6 +9,7 @@ import { API_OPTIONS } from "../Constant";
  * */
 export const useGetUpComingMovies = () => {
     const dispatch = useDispatch();
+    const upComingMovies = useSelector((store) => store.movies.upComingMovies);
 
     // Function to fetch TMDB data && set into store
     const handleGetUpComingMovie = async () => {
@@ -19,6 +20,6 @@ export const useGetUpComingMovies = () => {
 
     // Called method after component mount
     useEffect(() => {
-        handleGetUpComingMovie();
+        !upComingMovies && handleGetUpComingMovie();
     }, []);
 }

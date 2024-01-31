@@ -18,6 +18,7 @@ export const SearchBar = () => {
         e.preventDefault();
 
         // Get TMDB data from the method
+        if (searchRef.current.value === '') return alert("Enter want you want to see");
         const data = await getTmdbRecommendation(searchRef.current.value);
 
         // Set Into Store

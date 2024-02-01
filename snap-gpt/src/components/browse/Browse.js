@@ -6,6 +6,7 @@ import { SecondaryContainer } from '../secondaryContainer/SecondaryContainer';
 import { useGetTopRatedMovie } from '../../utils/hooks/useGetTopRatedMovie';
 import { useGetUpComingMovies } from '../../utils/hooks/useGetUpComingMovies';
 import { Recommendation } from '../recommendation/Recommendation';
+import { Outlet } from 'react-router-dom';
 
 function Browse() {
 
@@ -18,16 +19,8 @@ function Browse() {
     useGetUpComingMovies();
 
     return (
-        <div>
-            {
-                gpt.showRecommendation === true ?
-                    <Recommendation /> :
-                    <>
-                        <MainContainer />
-                        <SecondaryContainer />
-                    </>
-            }
-
+        <div className='text-white'>
+            <Outlet />
         </div>
     )
 }

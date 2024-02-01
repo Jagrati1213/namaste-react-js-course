@@ -10,7 +10,7 @@ export const MovieSuggestList = () => {
     if (!gptMoviesNames || !gptMoviesResult) return null;
 
     return (
-        <div className='px-6'>
+        <div className='px-2 md:px-6'>
             {
                 gptMoviesNames?.map((item, index) => < MovieList key={index} title={item} movies={gptMoviesResult[index]} />)
             }

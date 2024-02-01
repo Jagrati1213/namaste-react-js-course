@@ -1,17 +1,14 @@
-import { FaPlay, FaInfoCircle } from "react-icons/fa";
+import { useGetDimensions } from "../../utils/hooks/useGetDimensions";
 
 export const VideoTitle = ({ title, overview }) => {
+
+    const { width } = useGetDimensions();
+
     return (
-        <div className="absolute w-screen aspect-video pt-[20%] px-6 md:px-12 bg-gradient-to-r from-black">
-            <h1 className="text-3xl md:text-5xl font-bold my-4 w-full md:w-1/2">{title}</h1>
-            <p className="text-base md:text-lg my-4 w-full md:w-1/2">{overview}</p>
-            <div className="flex gap-3">
-                <button className=" bg-green-600 px-10 py-2 font-semibold rounded-sm hover:bg-green-400 flex items-center gap-2">
-                    <FaPlay /> Play
-                </button>
-                <button className=" bg-gray-600 px-10 py-2 font-semibold rounded-sm hover:bg-gray-500 flex items-center gap-2">
-                    <FaInfoCircle />More Info
-                </button>
-            </div>
+        <div className="absolute flex flex-col md:items-start items-center w-screen h-full aspect-video justify-center px-6 md:px-12 md:pt-0 pt-10 bg-gradient-to-r from-black">
+            <h1 className="text-[1.45rem] sm:text-3xl lg:text-5xl font-bold my-4 w-full lg:w-1/2">{title}</h1>
+            <p className="text-sm 2xl:text-lg md:my-4 w-full lg:w-1/2 inline-block">
+                {width >= 600 ? `${overview}` : `${overview.slice(0, 150) + '...'}`}
+            </p>
         </div>)
 }

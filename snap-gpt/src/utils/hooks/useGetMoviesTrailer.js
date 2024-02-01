@@ -31,5 +31,5 @@ export const useGetMoviesTrailer = (id) => {
     // Render after the component mount
     useEffect(() => {
         getMovieVideo();
-    }, [])
+    }, [id])
 }

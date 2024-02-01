@@ -35,7 +35,7 @@ function App() {
   }, []);
 
   return (
-    <div className='app w-full min-h-[100vh] relative overflow-x-hidden'>
+    <div className='app max-w-screen-2xl mx-auto relative w-full min-h-[100vh] overflow-x-hidden'>
       <Header />
       <Body />
     </div>

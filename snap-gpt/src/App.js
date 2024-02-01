@@ -5,12 +5,13 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from './utils/firebase/Firebase';
 import { useDispatch } from 'react-redux';
 import { addUser, removeUser } from './utils/redux/slice/UserSlice';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function App() {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
 
@@ -19,9 +20,12 @@ function App() {
       // User is signed in
       if (user) {
         const { uid, displayName, email, photoURL } = user;
-        // console.log(user);
         dispatch(addUser({ uid: uid, email: email, displayName: displayName, photoURL: photoURL }));
-        navigate('/browse');
+
+        // Only navigate to /browse if the current route is not /browse/
+        if (!location.pathname.startsWith('/browse/')) {
+          navigate('/browse');
+        }
       }
       else {
         // User is signed out
@@ -32,7 +36,7 @@ function App() {
 
     // unsubscribe when we unmount the element 
     return () => unsubscribe();
-  }, []);
+  }, [dispatch, navigate]);
 
   return (
     <div className='app max-w-screen-2xl mx-auto relative w-full min-h-[100vh] overflow-x-hidden'>

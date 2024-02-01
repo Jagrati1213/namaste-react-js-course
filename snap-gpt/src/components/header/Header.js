@@ -1,19 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeUser } from '../../utils/redux/slice/UserSlice';
 import { toggleRecommendationView } from '../../utils/redux/slice/GptSlice';
 import { signOut } from "firebase/auth";
 import { auth } from '../../utils/firebase/Firebase';
-import { SUPPORTED_LANGUAGES } from '../../utils/Constant';
-import { changeLang } from '../../utils/redux/slice/Config';
+import { FaSignOutAlt } from "react-icons/fa";
 
 function Header() {
 
-    const dispatch = useDispatch();
+    const [isMenuShowMenu, setIsMenuShow] = useState(false);
     const { user, gpt } = useSelector((store) => store);
-
+    const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    // Function for toggle the view 
+    const handleToggleRecommendationView = () => {
+        dispatch(toggleRecommendationView());
+    }
 
     // Function for sign out
     const handleSignOut = () => {
@@ -26,39 +30,47 @@ function Header() {
         });
     }
 
-    // Function for toggle the view 
-    const handleToggleRecommendationView = () => {
-        dispatch(toggleRecommendationView());
-    }
-
-    // Function runs on selected language
-    const handleLanguageChange = (e) => {
-        dispatch(changeLang(e.target.value));
+    // Function for toggle the dropdown
+    const toggleMenu = () => {
+        setIsMenuShow(!isMenuShowMenu);
     }
 
     return (
-        <header className='fixed top-0 p-5 w-full z-20 bg-gradient-to-b from-black flex justify-between items-center text-white'>
-            <h3 className='text-2xl lg:text-4xl font-extrabold italic text-green-500 tracking-wide'>FilmChicks</h3>
-            {
-                user !== null &&
-                (<div className="container_of_avatar_and_signout flex gap-3">
+        <header className="bg-gradient-to-b from-black border-gray-200 bg-black fixed w-full z-20 left-0 ring-0">
+            <div className="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto p-4">
 
-                    {gpt.showRecommendation && <select className='bg-gray-600 text-white px-5 border-2 border-solid border-yellow-800 focus:border-yellow-800 rounded-sm' onChange={handleLanguageChange}>
-                        {
-                            SUPPORTED_LANGUAGES.map((lang, index) => <option key={index} value={lang.value}>{lang.name}</option>)
-                        }
-                    </select>}
-                    <button onClick={handleToggleRecommendationView} className='px-6 py-2 bg-yellow-700 hover:bg-yellow-600 font-bold text-white rounded-sm mr-2'>
-                        {!gpt.showRecommendation ? 'Get Recommendation' : 'Back to Home'}
-                    </button>
-                    <div className='w-10 rounded'>
-                        <img src={user.photoURL} className='w-full object-cover rounded' alt="film_clicks_avatar" />
+                <h3 className='text-xl md:text-3xl font-extrabold italic text-green-500 tracking-wide'>
+                    FilmChicks
+                </h3>
+
+                {
+                    user !== null &&
+                    <div
+                        className="dropdown inline-block relative"
+                        onClick={toggleMenu}>
+
+                        <div className="lg:bg-gray-900 text-white font-semibold lg:py-2 lg:pl-4 rounded-sm inline-flex items-center cursor-pointer right-0">
+                            <span className="mr-1 hidden lg:inline-block">{user?.displayName} </span>
+                            <img src={user.photoURL} className='w-8 mx-3 object-cover rounded-full' alt="film_clicks_avatar" />
+                        </div>
+
+                        <ul onClick={toggleMenu}
+                            className={`right-0 absolute ${isMenuShowMenu ? 'block' : 'hidden'} w-fit rounded-sm bg-gray-800 text-white whitespace-nowrap mt-2 border-t-4`}
+                        >
+
+                            <li className="cursor-pointer py-3 bg-gray-800 px-10">HI, welcome</li>
+                            <li onClick={handleSignOut}
+                                className="flex items-center gap-3 cursor-pointer py-3  hover:bg-gray-700 px-10">SignOut<FaSignOutAlt /></li>
+                            <li onClick={handleToggleRecommendationView}
+                                className='flex items-center gap-3 cursor-pointer py-3  hover:bg-gray-700 px-10'>
+                                {!gpt.showRecommendation ? 'Get Recommendation' : 'Back to Home'}
+                            </li>
+                        </ul>
                     </div>
-                    <button onClick={handleSignOut} className='bg-green-600 hover:bg-green-700 rounded px-4 font-bold'>SignOut</button>
-                </div>)
-            }
+                }
 
-        </header >
+            </div>
+        </header>
     )
 }
 

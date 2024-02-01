@@ -8,6 +8,8 @@ import Login from './components/login/Login';
 import Browse from './components/browse/Browse';
 import { Provider } from 'react-redux';
 import { appStore } from './utils/redux/store';
+import { MovieDetails } from './components/movieDetails/MovieDetails';
+import { MainPage } from './components/browse/MainPage';
 // create routing for web
 const appRouter = createBrowserRouter([
   {
@@ -20,7 +22,17 @@ const appRouter = createBrowserRouter([
       },
       {
         path: '/browse',
-        element: <Browse />
+        element: <Browse />,
+        children: [
+          {
+            path: '/browse',
+            element: <MainPage />
+          },
+          {
+            path: '/browse/:movie_id',
+            element: <MovieDetails />
+          },
+        ]
       }
     ]
   }

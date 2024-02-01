@@ -6,8 +6,8 @@ function MovieList({ title, movies }) {
     if (!movies) return;
 
     return (
-        <div className='px-10'>
-            <div className='py-10 text-2xl font-bold'>
+        <div className='px-4 md:px-10'>
+            <div className='py-10 text-lg md:text-2xl font-bold'>
                 <h1>{title}</h1>
             </div>
             <div className='flex overflow-x-scroll overflow-y-hidden gap-4'>

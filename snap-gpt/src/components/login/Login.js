@@ -6,10 +6,12 @@ import { FILM_CHICKS_AVTAR_IMG, FILM_CHICKS_BACKGROUND_IMG } from '../../utils/C
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../../utils/redux/slice/UserSlice';
+import { IoEyeOff, IoEye } from "react-icons/io5";
 
 function Login() {
 
     const [isSignInForm, setIsSignInForm] = useState(true); // Toggle state
+    const [isVisible, setIsVisible] = useState(false); // Password Toggle state
     const [errorMessage, setErrorMessage] = useState(null);// Error state
 
     // Create reference for form fields
@@ -86,6 +88,12 @@ function Login() {
 
 
     }
+
+    // Function toggle the password visibility
+    const toggleVisibility = () => {
+        setIsVisible(!isVisible);
+    }
+
     return (
         <>
             {/* Background Image Part */}
@@ -93,24 +101,30 @@ function Login() {
                 <img src={FILM_CHICKS_BACKGROUND_IMG} alt="background" className='absolute top-0 bg-black h-full w-full object-cover' />
             </div>
             {/* Form Part */}
-            <div className='w-full p-10 mt-28 flex justify-center text-white'>
-                <form onSubmit={handleOnsubmit} className="login_container sm:w-full md:w-8/12 lg:w-4/12 xl:w-3/12 bg-black bg-opacity-80 p-10 z-20">
-                    <h3 className='text-2xl md:text-3xl font-semibold my-3 md:my-6'>
+            <div className='w-full p-2 md:p-10 mt-36 md:mt-28 flex justify-center text-white'>
+                <form onSubmit={handleOnsubmit} className="login_container sm:w-full md:w-8/12 lg:w-4/12 xl:3/12 bg-black bg-opacity-80 p-5 md:p-10 z-20">
+                    <h3 className='text-xl md:text-3xl font-semibold my-3 md:my-6'>
                         {isSignInForm ? 'SignIn' : 'SignUp'}
                     </h3>
                     {!isSignInForm &&
-                        <input ref={name} type='text' placeholder='Full Name' className='bg-[#333] w-full my-4 py-3 px-4 rounded mb-5 focus:outline-green-500 focus:border-green-500' />
+                        <input ref={name} type='text' placeholder='Full Name' className='bg-[#333] w-full my-4 py-2 md:py-3 px-4 rounded mb-2 md:mb-5 focus:outline-green-500 focus:border-green-500' />
                     }
-                    <input ref={email} type='text' placeholder='Email' className='bg-[#333] w-full my-4 py-3 px-4 rounded mb-5 focus:outline-green-500 focus:border-green-500' />
+                    <input ref={email} type='text' placeholder='Email' className='bg-[#333] w-full my-4 py-2 md:py-3 px-4 rounded mb-2 md:mb-5 focus:outline-green-500 focus:border-green-500' />
 
-                    <input ref={password} type='password' placeholder='Password' className='bg-[#333] w-full my-4 py-3 px-4 rounded mb-5 focus:outline-green-500 focus:border-green-500' />
+                    <div className='relative'>
+                        <input ref={password} type={isVisible ? 'text' : 'password'} placeholder='Password' className='bg-[#333] w-full my-4 py-2 md:py-3 px-4 rounded mb-2 md:mb-5 focus:outline-green-500 focus:border-green-500' />
+                        <span className='absolute right-3 md:top-[38%] top-[40%]' onClick={toggleVisibility}>
+                            {isVisible ? <IoEye /> : <IoEyeOff />}
+                        </span>
+                    </div>
 
-                    <p className='text-red-400 font-semibold text-xs md:text-base py-4'>{errorMessage}</p>
-                    <button className='bg-green-500 hover:bg-green-700 font-semibold text-white py-4 px-2 w-full text-xl rounded mb-5'>
+
+                    <p className='text-red-400 font-semibold text-sm md:text-base py-4'>{errorMessage}</p>
+                    <button className='bg-green-500 hover:bg-green-700 font-semibold text-white py-2 md:py-4 px-2 w-full text-base md:text-xl rounded mb-2 md:mb-5'>
                         {isSignInForm ? 'SignIn' : 'SignUp'}
                     </button>
 
-                    <p className='cursor-pointer font-semibold text-white  py-4 px-2 w-full text-md mb-5' onClick={toggleSignInForm}>
+                    <p className='cursor-pointer font-semibold text-white  py-4 px-2 w-full text-sm md:text-md mb-2  md:mb-5' onClick={toggleSignInForm}>
                         {isSignInForm ? 'New to filmChicks? signUp now.' : 'Already Register? signIn now.'}
                     </p>
                 </form>

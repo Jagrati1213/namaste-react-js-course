@@ -14,6 +14,9 @@
 # enviornment
 .env
 
+# Jagrati things
+/futureImplementaion
+
 # misc
 .DS_Store
 .env.local

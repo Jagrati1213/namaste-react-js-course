@@ -26,9 +26,9 @@ export const SearchBar = () => {
     }
     return (
         <div className='w-full flex justify-center'>
-            <form onSubmit={(event) => handleOnsubmit(event)} className='justify-between gap-5 bg-yellow-900 w-1/2 rounded-sm grid grid-cols-12'>
-                <input type="text" ref={searchRef} placeholder={langConstant?.[config.lang].gptPlaceHolder} className='col-span-9 text-lg py-3 px-2 outline-none m-2 rounded-sm bg-transparent placeholder:text-white' />
-                <button className='col-span-3 py-4 px-10 font-bold text-lg bg-yellow-800 hover:bg-yellow-700 rounded-sm tracking-wide'>{langConstant?.[config.lang].search}</button>
+            <form onSubmit={(event) => handleOnsubmit(event)} className='justify-between bg-yellow-900 w-11/12 lg:w-1/2 rounded-sm flex'>
+                <input type="text" ref={searchRef} placeholder={langConstant?.[config.lang].gptPlaceHolder} className='w-full text-sm md:text-lg px-2 outline-none md:m-2 rounded-sm bg-transparent placeholder:text-white focus:hover:bg-yellow-700' />
+                <button className='py-3 md:py-4 px-5 md:px-10 font-bold md:text-lg bg-yellow-800 hover:bg-yellow-700 rounded-sm tracking-wide'>{langConstant?.[config.lang].search}</button>
             </form>
         </div>
     )

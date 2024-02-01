@@ -19,13 +19,17 @@ export const useGetMoviesTrailer = (id) => {
     const getMovieVideo = async () => {
         const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`, API_OPTIONS);
         const data = await response.json();
-        const FilterTrailer = data?.results.find((video) => video.type === "Trailer");
+        const FilterTrailer = data?.results?.find((video) => video.type === "Trailer");
         const trailer = !FilterTrailer ? (data?.results[0]) : FilterTrailer;
-        dispatch(addTrailerVideo(trailer));
+
+        // Condition resolve the overlapping of trailer video
+        if (trailerVideo?.key !== trailer?.key) {
+            dispatch(addTrailerVideo(trailer));
+        }
     }
 
     // Render after the component mount
     useEffect(() => {
-        !trailerVideo && getMovieVideo();
+        getMovieVideo();
     }, [])
 }

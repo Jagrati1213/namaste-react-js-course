@@ -12,7 +12,7 @@ export const MovieDetails = () => {
             {/* mainContainer */}
             <MainContainer original_title={movie?.original_title} overview={movie?.overview} id={movie?.id} />
             {
-                casts.length > 0 && <>
+                casts.length > 0 && casts[0]?.profile_path && <>
                     {/* Movie Casts */}
                     <div className='text-lg md:text-2xl font-bold px-2 mt-3'>
                         <h1>Casts</h1>

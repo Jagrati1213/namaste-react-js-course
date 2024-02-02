@@ -2,11 +2,12 @@ import React from 'react'
 import { TMDB_IMAGE_URL } from '../../utils/Constant';
 
 export const MovieCasts = ({ casts }) => {
+
     return (
-        <div className='flex overflow-x-scroll gap-4 my-10 text-white'>
-            {casts.map((actor) => (
-                <div
-                    key={actor.id}
+        <div className='flex overflow-x-scroll gap-4 mt-10 text-white'>
+            {casts.map((actor, index) => (
+                actor.profile_path && <div
+                    key={index}
                     className="cursor-pointer hover:bg-gray-800 p-2 rounded-sm shadow-md hover:shadow-lg transition duration-300 ease-in-out">
                     <img
                         src={`${TMDB_IMAGE_URL}/${actor?.profile_path}`}

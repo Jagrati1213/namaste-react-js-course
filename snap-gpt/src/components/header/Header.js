@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeUser } from '../../utils/redux/slice/UserSlice';
 import { toggleRecommendationView } from '../../utils/redux/slice/GptSlice';
@@ -38,10 +38,12 @@ function Header() {
     return (
         <header className="bg-gradient-to-b from-black border-gray-200 bg-black fixed w-full z-20 left-0 ring-0">
             <div className="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto p-4">
+                <Link to={'/browse'}>
+                    <h3 className='text-xl md:text-3xl font-extrabold italic text-green-500 tracking-wide'>
+                        FilmChicks
+                    </h3>
+                </Link>
 
-                <h3 className='text-xl md:text-3xl font-extrabold italic text-green-500 tracking-wide'>
-                    FilmChicks
-                </h3>
 
                 {
                     user !== null &&

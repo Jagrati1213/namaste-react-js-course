@@ -3,7 +3,7 @@ import { TMDB_IMAGE_URL } from '../../utils/Constant';
 
 export const MovieCasts = ({ casts }) => {
     return (
-        <div className={`flex w-full overflow-x-scroll gap-4 my-10 pb-5 text-white px-2`}>
+        <div className='flex overflow-x-scroll gap-4 my-10 text-white'>
             {casts.map((actor) => (
                 <div
                     key={actor.id}

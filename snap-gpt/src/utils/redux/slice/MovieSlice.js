@@ -10,6 +10,7 @@ const MovieSlice = createSlice({
         movieDetails: {
             movie: null,
             casts: null,
+            similarMovies: null,
         }
     },
     reducers: {
@@ -26,9 +27,10 @@ const MovieSlice = createSlice({
             state.trailerVideo = action.payload;
         },
         addSingleMovieDetails: (state, action) => {
-            const { movie, casts } = action.payload
+            const { movie, casts, similarMovies } = action.payload
             state.movieDetails.movie = movie;
-            state.movieDetails.casts = casts
+            state.movieDetails.casts = casts;
+            state.movieDetails.similarMovies = similarMovies;
         }
     }
 });

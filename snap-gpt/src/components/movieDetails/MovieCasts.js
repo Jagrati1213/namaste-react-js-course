@@ -17,7 +17,7 @@ export const MovieCasts = ({ casts }) => {
                             <div
                                 key={index}
                                 className="cursor-pointer hover:bg-gray-800 p-2 rounded-sm shadow-md hover:shadow-lg transition duration-300 ease-in-out w-36 md:w-40">
-                                <div className='w-32 md:w-36 h-[155px] md:h-[175px] bg-gray-800 overflow-hidden'>
+                                <div className='w-32 md:w-36 h-[155px] md:h-[175px] bg-gray-900 overflow-hidden'>
                                     <img
                                         src={actor?.profile_path ? `${TMDB_IMAGE_URL}/${actor?.profile_path}` : `${CAST_DUMMY_IMAGE}`}
                                         alt={actor?.name}

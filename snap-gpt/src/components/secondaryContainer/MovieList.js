@@ -20,7 +20,8 @@ function MovieList({ title, movies }) {
 
         // filter the related movie details and set into movies store 
         const singleMovieDetails = movies.find((item) => item?.original_title === arr[0]);
-        dispatch(addSingleMovieDetails({ movie: singleMovieDetails, casts: casts, similarMovies: similarMovies }));
+        const popularCast = casts.filter((cast) => cast.popularity >= 30);
+        dispatch(addSingleMovieDetails({ movie: singleMovieDetails, casts: popularCast, similarMovies: similarMovies }));
     }
 
     return (

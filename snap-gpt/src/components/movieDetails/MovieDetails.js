@@ -17,7 +17,6 @@ export const MovieDetails = () => {
     useGetSimilarMovies(movie_id);
 
     const { movieDetails, casts, similarMovies } = useSelector((store) => store.movies);
-    console.log(movieDetails, casts, similarMovies);
     if (!movieDetails) return;
 
     return (

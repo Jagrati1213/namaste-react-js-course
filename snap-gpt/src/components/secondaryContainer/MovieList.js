@@ -1,10 +1,11 @@
 import React from 'react'
 import { MovieCard } from './MovieCard';
 import { Link } from 'react-router-dom';
+import MovieListSekeleton from '../skeletons/movieList/MovieListSekeleton';
 
 function MovieList({ title, movies }) {
 
-    if (!movies) return;
+    if (!movies) return <MovieListSekeleton />;
 
     return (
         <div className='px-4 md:px-2'>

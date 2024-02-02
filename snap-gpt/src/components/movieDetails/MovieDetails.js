@@ -28,7 +28,6 @@ export const MovieDetails = () => {
                 overview={movieDetails?.overview}
                 id={movieDetails?.id} />
 
-            <h1>{casts?.length}</h1>
             {/* movieCast */}
             {
                 casts?.length > 0 && <MovieCasts casts={casts} />

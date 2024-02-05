@@ -1,11 +1,14 @@
+import { FILM_CHICKS_BACKGROUND_IMG } from "../../utils/Constant"
 import { MovieSuggestList } from "./MovieSuggestList"
 import { SearchBar } from "./SearchBar"
 
 export const Recommendation = () => {
     return (
-        <div className="bg-black py-32 min-h-screen text-white flex flex-col gap-10">
+        <div className="bg-black h-screen text-white relative flex flex-col gap-10 bg-no-repeat bg-fixed bg-cover bg-blend-screen"
+            style={{ backgroundImage: `url(${FILM_CHICKS_BACKGROUND_IMG}) ` }}>
             <SearchBar />
             <MovieSuggestList />
+
         </div>
     )
 }

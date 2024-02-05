@@ -20,7 +20,7 @@ function App() {
       // User is signed in
       if (user) {
         const { uid, displayName, email, photoURL } = user;
-        dispatch(addUser({ uid: uid, email: email, displayName: displayName, photoURL: photoURL }));
+        dispatch(addUser({ uid, email, displayName, photoURL }));
 
         // Only navigate to /browse if the current route is not /browse/
         if (!location.pathname.startsWith('/browse/')) {

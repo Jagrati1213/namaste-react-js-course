@@ -6,6 +6,7 @@ import { auth } from './utils/firebase/Firebase';
 import { useDispatch } from 'react-redux';
 import { addUser, removeUser } from './utils/redux/slice/UserSlice';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { getFirebaseStoreDoc } from './utils/helper/getFirebaseStoreDoc';
 
 function App() {
 
@@ -17,10 +18,23 @@ function App() {
 
     // onAuthStateChanged : run whenever user signIn & signOut
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      // User is signed in
+      // User is signedIn
       if (user) {
         const { uid, displayName, email, photoURL } = user;
-        dispatch(addUser({ uid, email, displayName, photoURL }));
+
+        // dispatch(addUser({ uid: uid, email: email, displayName: displayName, photoURL: photoURL }));
+        getFirebaseStoreDoc(uid)
+          .then((docData) => {
+            dispatch(addUser(
+              {
+                uid: uid,
+                email: email,
+                displayName: displayName,
+                photoURL: photoURL,
+                searchLimit: docData?.searchLimit
+              }));
+          })
+          .catch((error) => console.error('Error fetching Firebase document:', error));
 
         // Only navigate to /browse if the current route is not /browse/
         if (!location.pathname.startsWith('/browse/')) {

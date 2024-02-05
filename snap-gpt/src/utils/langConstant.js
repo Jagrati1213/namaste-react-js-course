@@ -1,7 +1,7 @@
 export const langConstant = {
     en: {
         search: 'search',
-        gptPlaceHolder: 'What would you like to watch today?'
+        gptPlaceHolder: 'Which type of movie you want to see..'
     },
     hindi: {
         search: 'खोज',

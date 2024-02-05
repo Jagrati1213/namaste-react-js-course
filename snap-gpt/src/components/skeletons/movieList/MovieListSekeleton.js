@@ -3,7 +3,7 @@ import MovieCardSkeleton from './MovieCardSkeleton'
 
 function MovieListSekeleton() {
     return (
-        <div className={`flex  overflow-x-scroll gap-4`}>
+        <div className={`flex flex-wrap gap-4`}>
             <MovieCardSkeleton />
             <MovieCardSkeleton />
             <MovieCardSkeleton />

@@ -1,18 +1,20 @@
 import React, { useRef, useState } from 'react'
 import { CheckValidationOfForm } from '../../utils/Validation';
-import { auth } from '../../utils/firebase/Firebase';
+import { auth, firestore } from '../../utils/firebase/Firebase';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { FILM_CHICKS_AVTAR_IMG, FILM_CHICKS_BACKGROUND_IMG } from '../../utils/Constant';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../../utils/redux/slice/UserSlice';
 import { IoEyeOff, IoEye } from "react-icons/io5";
+import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { getFirebaseStoreDoc } from '../../utils/helper/getFirebaseStoreDoc';
 
 function Login() {
 
     const [isSignInForm, setIsSignInForm] = useState(true); // Toggle state
     const [isVisible, setIsVisible] = useState(false); // Password Toggle state
-    const [errorMessage, setErrorMessage] = useState(null);// Error state
+    const [errorMessage, setErrorMessage] = useState(null);// Error state   
 
     // Create reference for form fields
     const name = useRef(null);
@@ -58,11 +60,40 @@ function Login() {
 
                     updateProfile(user, {
                         displayName: name.current.value,
-                        photoURL: FILM_CHICKS_AVTAR_IMG
-                    }).then(() => {
-                        // Profile updated! Now need to update the store user
-                        const { uid, displayName, email, photoURL } = auth.currentUser; //update profile store in auth not in User
-                        dispatch(addUser({ uid: uid, email: email, displayName: displayName, photoURL: photoURL }));
+                        photoURL: FILM_CHICKS_AVTAR_IMG,
+                    }).then(async () => {
+
+                        // Profile updated!
+                        const { uid, displayName, email, photoURL } = auth.currentUser;
+
+                        // Create Document
+                        const userDocRef = doc(firestore, 'users', uid);
+                        const userDoc = await getDoc(userDocRef);
+
+                        if (!userDoc.exists()) {
+                            setDoc(userDocRef, {
+                                email: email,
+                                displayName: displayName,
+                                openAiKey: null,
+                                searchLimit: 2,
+                            });
+                        }
+
+                        // get fireStore doc & set to user store
+                        getFirebaseStoreDoc(uid)
+                            .then((docData) => {
+                                dispatch(addUser(
+                                    {
+                                        uid: uid,
+                                        email: email,
+                                        displayName: displayName,
+                                        photoURL: photoURL,
+                                        searchLimit: docData?.searchLimit
+                                    }));
+                            })
+                            .catch((error) => console.error('Error fetching Firebase document:', error));
+
+
                         navigate('/browse');
                     }).catch((error) => {
                         // An error occurred
@@ -77,7 +108,7 @@ function Login() {
         else {
             // SignIn Logic
             signInWithEmailAndPassword(auth, email.current.value, password.current.value)
-                .then((userCredential) => {
+                .then(async (userCredential) => {
                     const user = userCredential.user;
                 })
                 .catch((error) => {

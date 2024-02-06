@@ -22,7 +22,6 @@ function App() {
       if (user) {
         const { uid, displayName, email, photoURL } = user;
 
-        // dispatch(addUser({ uid: uid, email: email, displayName: displayName, photoURL: photoURL }));
         getFirebaseStoreDoc(uid)
           .then((docData) => {
             dispatch(addUser(
@@ -31,7 +30,8 @@ function App() {
                 email: email,
                 displayName: displayName,
                 photoURL: photoURL,
-                searchLimit: docData?.searchLimit
+                searchLimit: docData?.searchLimit,
+                openAiKey: docData?.openAiKey,
               }));
           })
           .catch((error) => console.error('Error fetching Firebase document:', error));

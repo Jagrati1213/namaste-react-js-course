@@ -1,3 +1,14 @@
+/**
+ * A function used to check validation of the fields.
+ * 
+ * @param name - Take a name for checking the name Pattern with Regular Express.
+ * @param email - Take a email for checking the email Pattern with Regular Express.
+ * @param password - Take a password for checking the password Pattern with Regular Express.
+ * 
+ * @returns `String` - If params passed the validation.
+ * @returns `Null` - If all params are passed the validation.  
+ **/
+
 export const CheckValidationOfForm = (name, email, password) => {
 
     const isFullNameValid = /(^[A-Za-z]{3,16})([ ]{0,1})([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})/.test(name);

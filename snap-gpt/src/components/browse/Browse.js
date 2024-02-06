@@ -4,13 +4,12 @@ import { useGetTopRatedMovie } from '../../utils/hooks/useGetTopRatedMovie';
 import { useGetUpComingMovies } from '../../utils/hooks/useGetUpComingMovies';
 import { Outlet } from 'react-router-dom';
 
-function Browse() {
+const Browse = () => {
 
-    // Called the method from movieSlice           
+    // Fetch the nowPlaying, topRated, upcoming movies           
     useGetNowPlayingMovies();
     useGetTopRatedMovie();
     useGetUpComingMovies();
-
 
     return (
         <div className='text-white'>

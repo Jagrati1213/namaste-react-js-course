@@ -23,7 +23,8 @@ export const SearchBar = () => {
 
     // Function run after form submit
     const handleOnsubmit = async (e) => {
-        // Make onload none
+
+        // stop auto submission
         e.preventDefault();
         const userRef = doc(firestore, "users", user?.uid);
 
@@ -45,29 +46,19 @@ export const SearchBar = () => {
                 .then((data) => dispatch(addGptSearch({ moviesName: data[1], moviesResult: data[0] })))
                 .catch((error) => {
                     if (error.status == 429) setError(error.message)
-                    if (error.status == 401) setError(error.message);
                 });
         }
         else {
-            if (user?.openAiKey === null) setShowModal(true);
-            else {
-                //Logic for update open ai key 
-                await updateDoc(userRef, {
-                    openAiKey: user?.openAiKey,
-                });
 
-                const docData = await getFirebaseStoreDoc(user?.uid);
-                dispatch(addUser({ ...user, openAiKey: docData?.openAiKey }));
-
-                getTmdbRecommendation(searchRef.current.value)
+            user?.openAiKey === null ? setShowModal(true)
+                : getTmdbRecommendation(searchRef.current.value, user)
                     .then((data) => dispatch(addGptSearch({ moviesName: data[1], moviesResult: data[0] })))
                     .catch((error) => {
                         if (error.status == 429) setError(error.message)
-                        if (error.status == 401) setError(error.message)
+                        if (error.status == 401) setShowModal(true);
                     });
-            }
-
         }
+
 
         setSearchText('search');
     }

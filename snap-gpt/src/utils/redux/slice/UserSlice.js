@@ -7,7 +7,8 @@ const UserSlice = createSlice({
         email: null,
         displayName: null,
         photoURL: null,
-        searchLimit: null
+        searchLimit: null,
+        openAiKey: null,
     },
     reducers: {
         addUser: (_, action) => {

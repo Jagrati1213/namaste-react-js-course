@@ -3,7 +3,6 @@ import { MainContainer } from '../mainContainer/MainContainer';
 import { useSelector } from 'react-redux';
 import { MovieCasts } from './MovieCasts';
 import { MovieList } from '../secondaryContainer/MovieList';
-import { CastList } from '../skeletons/movieDetails/CastList';
 import { useParams } from 'react-router-dom';
 import { useGetMovieDetails } from '../../utils/hooks/useGetMovieDetail';
 import { useGetMovieCasts } from '../../utils/hooks/useGetMovieCast';

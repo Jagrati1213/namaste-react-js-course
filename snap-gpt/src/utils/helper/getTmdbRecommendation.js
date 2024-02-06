@@ -12,7 +12,7 @@ export const getTmdbRecommendation = async (searchValue) => {
     // Set more information to get efficient result
     const gptQuery = `Act as a movie recommendation system and suggest some movies for the query : ${searchValue}. Only give me 5 movies, comma separated like a example : Koi Mil Gaya, Dhamaal, Dhol, Bhagam Bhaag, Don.`
 
-    //  Make a api call for related query
+    //  Make a api call 
     const gptQueryResult = await Openai.chat.completions.create({
         messages: [{ role: 'user', content: gptQuery }],
         model: 'gpt-3.5-turbo',

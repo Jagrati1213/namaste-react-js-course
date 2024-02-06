@@ -1,6 +1,5 @@
 import React, { useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { langConstant } from '../../utils/langConstant'
 import { addGptSearch } from '../../utils/redux/slice/GptSlice';
 import { getTmdbRecommendation } from '../../utils/helper/getTmdbRecommendation';
 import { OpenAiKeyModal } from './OpenAiKeyModal';
@@ -12,37 +11,42 @@ import { LimitExpire } from '../error/LimitExpire';
 
 export const SearchBar = () => {
 
-    const config = useSelector((store) => store.config);
+    const searchRef = useRef();
+    const dispatch = useDispatch();
     const user = useSelector(selectUserState);
     const [searchText, setSearchText] = useState('search');
     const [showModal, setShowModal] = useState(false);
     const [Error, setError] = useState(null);
-    const searchRef = useRef();
-    const dispatch = useDispatch();
 
 
-    // Function run after form submit
+    // Search Logic
     const handleOnsubmit = async (e) => {
 
         // stop auto submission
         e.preventDefault();
+
+        // Create firebase Doc ref
         const userRef = doc(firestore, "users", user?.uid);
 
-        // Get TMDB data from the method
+        // Check input field
         if (searchRef.current.value === '') return alert("Enter which type of movie you want to see");
 
         setSearchText("searching...");
 
-        // Logic to check user search Limit
+        // Check search Limit
         if (user?.searchLimit > 0) {
 
+            // Update doc Limit
             await updateDoc(userRef, {
                 searchLimit: user?.searchLimit - 1,
             });
+
+            // Get doc && Update in store
             const docData = await getFirebaseStoreDoc(user?.uid);
             dispatch(addUser({ ...user, searchLimit: docData?.searchLimit }));
 
-            getTmdbRecommendation(searchRef.current.value)
+            // Get Search query data
+            getTmdbRecommendation(searchRef.current.value, user)
                 .then((data) => dispatch(addGptSearch({ moviesName: data[1], moviesResult: data[0] })))
                 .catch((error) => {
                     if (error.status == 429) setError(error.message)
@@ -66,10 +70,16 @@ export const SearchBar = () => {
         <>  {showModal && <OpenAiKeyModal showModal={showModal} setShowModal={setShowModal} />}
             <div className='w-full flex justify-center pt-32 flex-col items-center'>
                 <form onSubmit={(event) => handleOnsubmit(event)} className='justify-between bg-yellow-900 w-11/12 lg:w-1/2 rounded-sm flex'>
-                    <input type="text" ref={searchRef} placeholder={langConstant?.[config.lang].gptPlaceHolder} className='w-full text-sm md:text-lg px-2 outline-none md:m-2 rounded-sm bg-transparent placeholder:text-white focus:hover:bg-yellow-700' />
+                    <input
+                        type="text"
+                        ref={searchRef}
+                        placeholder="Which type of movies you want to see..." className='w-full text-sm md:text-lg px-2 outline-none md:m-2 rounded-sm bg-transparent placeholder:text-white focus:hover:bg-yellow-700' />
                     <button className='py-3 md:py-4 px-5 md:px-10 font-bold md:text-lg bg-yellow-800 hover:bg-yellow-700 rounded-sm tracking-wide'>
                         {searchText}
-                        <p className='text-xs text-nowrap'>Limit: {user?.searchLimit}</p>
+                        {
+                            user?.openAiKey === null &&
+                            <p className='text-xs text-nowrap'>Limit: {user?.searchLimit}</p>
+                        }
                     </button>
                 </form>
                 <LimitExpire error={Error} />

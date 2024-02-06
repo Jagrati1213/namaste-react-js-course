@@ -7,7 +7,7 @@ import { addTrailerVideo } from "../redux/slice/MovieSlice";
 *  A function that fetch video's Trailer from TMDB API, 
 * and set the fetched data into movie's Redux store.
 *
-* @params movieId : A function that receives the movieID, that responsible for fetching youtube key.
+* @param movieId : A function that receives the movieID, that responsible for fetching youtube key.
 **/
 
 export const useGetMoviesTrailer = (id) => {

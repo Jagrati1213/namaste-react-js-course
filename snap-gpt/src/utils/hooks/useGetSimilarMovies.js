@@ -6,7 +6,7 @@ import { addSimilarMovies } from "../redux/slice/MovieSlice";
 /**
 *  A function that fetch given movie id related similar movies from TMDB movie similar API.
 * and store the similar movies 
-* @params movieId : A function that receives the movieName, that responsible for giving result movies details.
+* @param movieId : A function that receives the movieName, that responsible for giving result movies details.
 */
 
 export const useGetSimilarMovies = (movieId) => {

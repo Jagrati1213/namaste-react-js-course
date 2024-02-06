@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import { getDimensions } from "../helper/getDimensions";
 
+/**
+*  A function return width and height as object.Whenever screen size change.
+
+* @return `screenSize` : return object
+ */
 export const useGetDimensions = () => {
 
     const [screenSize, setScreenSize] = useState(getDimensions());

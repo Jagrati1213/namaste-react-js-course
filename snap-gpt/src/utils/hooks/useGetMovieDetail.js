@@ -4,10 +4,10 @@ import { addMovieDetails } from "../redux/slice/MovieSlice";
 import { getMovieDetail } from "../helper/getMovieDetail";
 /**
 *  A function that fetch given movie name details from TMDB movie search API.
+* store into movie state
 *
-* @params movieName : A function that receives the movieName, that responsible for giving result movies details.
-* @return result : A function return the collection of related search movie.
- */
+* @param movieName : A function that receives the movieName, that responsible for giving result movies details.
+*/
 export const useGetMovieDetails = (movieName) => {
 
     const dispatch = useDispatch();

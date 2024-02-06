@@ -49,7 +49,6 @@ export const SearchBar = () => {
                 });
         }
         else {
-
             user?.openAiKey === null ? setShowModal(true)
                 : getTmdbRecommendation(searchRef.current.value, user)
                     .then((data) => dispatch(addGptSearch({ moviesName: data[1], moviesResult: data[0] })))
@@ -58,7 +57,6 @@ export const SearchBar = () => {
                         if (error.status == 401) setShowModal(true);
                     });
         }
-
 
         setSearchText('search');
     }

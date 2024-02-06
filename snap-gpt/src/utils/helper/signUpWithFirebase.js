@@ -5,6 +5,16 @@ import { doc, getDoc, setDoc } from "firebase/firestore";
 import { getFirebaseStoreDoc } from "./getFirebaseStoreDoc";
 import { addUser } from "../redux/slice/UserSlice";
 
+/**
+*  A function create user account and their Document inside firebase and store into redux.
+*
+* @param email : A function take email.
+* @param password : A function take password.
+* @param name : A function take name.
+* @param setErrorMessage : A function take setErrorMessage, for set error messages.
+* @param navigate : A function take navigate to use hook inside function.
+* @param dispatch : A function take dispatch to use hook inside function.
+ */
 export const signUpWithFirebase = (email, password, name, dispatch, navigate, setErrorMessage) => {
 
     // SignUp Logic
@@ -58,6 +68,14 @@ export const signUpWithFirebase = (email, password, name, dispatch, navigate, se
         });
 }
 
+
+/**
+*  A function check user's credential with firebase store.
+*
+* @param email : A function take email.
+* @param password : A function take password.
+* @param setErrorMessage : A function take setErrorMessage, for set error messages.
+ */
 export const signInWithFirebase = (email, password, setErrorMessage) => {
     signInWithEmailAndPassword(auth, email, password)
         .then(async (userCredential) => {

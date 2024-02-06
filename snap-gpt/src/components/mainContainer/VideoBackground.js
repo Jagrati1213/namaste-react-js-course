@@ -4,10 +4,10 @@ import { FILM_CHICKS_BACKGROUND_IMG } from "../../utils/Constant";
 
 export const VideoBackground = ({ movieID }) => {
 
-    // Call the custom hook for fetch the video
+    // Fetch the video Details
     useGetMoviesTrailer(movieID);
 
-
+    // Get the trailerVideo
     const trailerVideo = useSelector((store) => store.movies.trailerVideo);
 
     return <div className="w-[50rem] md:w-screen aspect-video h-full text-white">

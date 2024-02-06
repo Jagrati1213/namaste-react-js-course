@@ -11,7 +11,8 @@ function Header() {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { user, gpt } = useSelector((store) => store);
+    const user = useSelector((store) => store.user);
+    const gpt = useSelector((store) => store.gpt);
     const [isMenuShowMenu, setIsMenuShow] = useState(false);
 
     // Toggle recommendation

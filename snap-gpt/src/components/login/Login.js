@@ -88,11 +88,11 @@ function Login() {
                                         email: email,
                                         displayName: displayName,
                                         photoURL: photoURL,
-                                        searchLimit: docData?.searchLimit
+                                        searchLimit: docData?.searchLimit,
+                                        openAiKey: docData?.openAiKey,
                                     }));
                             })
                             .catch((error) => console.error('Error fetching Firebase document:', error));
-
 
                         navigate('/browse');
                     }).catch((error) => {

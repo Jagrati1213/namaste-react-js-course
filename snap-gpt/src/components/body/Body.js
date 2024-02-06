@@ -1,8 +1,8 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
 
-// Outlet :- manage what will user show in different pages.
-function Body() {
+// Outlet :- display parent children
+const Body = () => {
     return (
         <Outlet />
     )

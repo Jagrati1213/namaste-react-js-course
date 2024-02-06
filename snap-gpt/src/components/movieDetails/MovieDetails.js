@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import { useGetMovieDetails } from '../../utils/hooks/useGetMovieDetail';
 import { useGetMovieCasts } from '../../utils/hooks/useGetMovieCast';
 import { useGetSimilarMovies } from '../../utils/hooks/useGetSimilarMovies';
+import { CastList } from '../skeletons/movieDetails/CastList';
 
 export const MovieDetails = () => {
 
@@ -27,8 +28,9 @@ export const MovieDetails = () => {
                 id={movieDetails?.id} />
 
             {/* movieCast */}
+            <h1 className='text-3xl text-white'>{!casts}</h1>
             {
-                casts?.length > 0 && <MovieCasts casts={casts} />
+                casts.length === 0 ? <CastList /> : <MovieCasts casts={casts} />
             }
 
             {/* similarMovies */}

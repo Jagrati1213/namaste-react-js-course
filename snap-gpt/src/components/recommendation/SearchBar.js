@@ -34,7 +34,7 @@ export const SearchBar = () => {
         setSearchText("searching...");
 
         // Logic to check user search Limit
-        if (user?.searchLimit > 0 && user?.openAiKey == null) {
+        if (user?.searchLimit > 0) {
 
             await updateDoc(userRef, {
                 searchLimit: user?.searchLimit - 1,

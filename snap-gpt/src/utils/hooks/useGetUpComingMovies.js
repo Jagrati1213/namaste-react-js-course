@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addUpComingsMovies } from "../redux/slice/MovieSlice";
+import { addUpComingsMovies, setLoading } from "../redux/slice/MovieSlice";
 import { API_OPTIONS } from "../Constant";
 
 /** 
@@ -13,13 +13,17 @@ export const useGetUpComingMovies = () => {
 
     // Function to fetch TMDB data && set into store
     const handleGetUpComingMovie = async () => {
+
+        dispatch(setLoading({ dataKey: 'upComing', loadingState: true }));
         const response = await fetch('https://api.themoviedb.org/3/movie/top_rated?&page=2', API_OPTIONS);
         const data = await response.json();
         dispatch(addUpComingsMovies(data?.results));
+        dispatch(setLoading({ dataKey: 'upComing', loadingState: true }));
+
     }
 
     // Called method after component mount
     useEffect(() => {
         !upComingMovies && handleGetUpComingMovie();
-    }, []);
+    }, [upComingMovies]);
 }

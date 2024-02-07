@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* add bg-color on root */
+#root {
+    background-color: black;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 9px;
+    height: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #2f2f2f;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #b18041;
+    border-radius: 1.5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #7b5626;
+}

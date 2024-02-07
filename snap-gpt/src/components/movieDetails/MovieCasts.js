@@ -3,6 +3,7 @@ import { CAST_DUMMY_IMAGE, TMDB_IMAGE_URL } from '../../utils/Constant';
 
 export const MovieCasts = ({ casts }) => {
 
+    if (casts?.length == 0) return;
     return (
         <>
             <div className='text-lg md:text-2xl font-bold px-2 mt-3'>

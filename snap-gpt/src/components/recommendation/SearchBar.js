@@ -13,7 +13,7 @@ export const SearchBar = () => {
 
     const searchRef = useRef();
     const dispatch = useDispatch();
-    const { loading } = useSelector((store) => store.movies);
+    const { loading } = useSelector((store) => store.gpt);
 
     const user = useSelector(selectUserState);
     const [searchText, setSearchText] = useState('search');
@@ -86,7 +86,8 @@ export const SearchBar = () => {
                         type="text"
                         ref={searchRef}
                         placeholder="Which type of movies you want to see..." className='w-full text-sm md:text-lg px-2 outline-none md:m-2 rounded-sm bg-transparent placeholder:text-white focus:hover:bg-yellow-700' />
-                    <button className='py-3 md:py-4 px-5 md:px-10 font-bold md:text-lg bg-yellow-800 hover:bg-yellow-700 rounded-sm tracking-wide'>
+                    <button className='py-3 md:py-4 px-5 md:px-10 font-bold md:text-lg bg-yellow-800 rounded-sm tracking-wide hover:bg-yellow-700 disabled:bg-opacity-60 disabled:bg-yellow-950 disabled:cursor-not-allowed'
+                        disabled={loading}>
                         {searchText}
                         {
                             user?.openAiKey === null &&

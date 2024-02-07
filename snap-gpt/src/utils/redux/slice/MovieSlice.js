@@ -10,6 +10,13 @@ const MovieSlice = createSlice({
         movieDetails: null,
         casts: null,
         similarMovies: null,
+        loading: {
+            nowPlaying: false,
+            topRated: false,
+            upComing: false,
+            casts: false,
+            similarMovies: false,
+        },
     },
     reducers: {
         addNowPlayingMovies: (state, action) => {
@@ -32,6 +39,10 @@ const MovieSlice = createSlice({
         },
         addSimilarMovies: (state, action) => {
             state.similarMovies = action.payload;
+        },
+        setLoading: (state, action) => {
+            const { dataKey, loadingState } = action.payload;
+            state.loading[dataKey] = loadingState;
         }
     }
 });
@@ -43,5 +54,6 @@ export const {
     addTrailerVideo,
     addMovieDetails,
     addCasts,
-    addSimilarMovies } = MovieSlice.actions;
+    addSimilarMovies,
+    setLoading } = MovieSlice.actions;
 export default MovieSlice.reducer;

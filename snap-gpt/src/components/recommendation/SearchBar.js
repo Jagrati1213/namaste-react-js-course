@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { addGptSearch } from '../../utils/redux/slice/GptSlice';
+import { addGptSearch, setLoading } from '../../utils/redux/slice/GptSlice';
 import { getTmdbRecommendation } from '../../utils/helper/getTmdbRecommendation';
 import { OpenAiKeyModal } from './OpenAiKeyModal';
 import { addUser, selectUserState } from '../../utils/redux/slice/UserSlice';
@@ -13,6 +13,8 @@ export const SearchBar = () => {
 
     const searchRef = useRef();
     const dispatch = useDispatch();
+    const { loading } = useSelector((store) => store.movies);
+
     const user = useSelector(selectUserState);
     const [searchText, setSearchText] = useState('search');
     const [showModal, setShowModal] = useState(false);
@@ -31,10 +33,11 @@ export const SearchBar = () => {
         // Check input field
         if (searchRef.current.value === '') return alert("Enter which type of movie you want to see");
 
-        setSearchText("searching...");
-
         // Check search Limit
         if (user?.searchLimit > 0) {
+
+            dispatch(setLoading(true));
+            setSearchText('Searching..')
 
             // Update doc Limit
             await updateDoc(userRef, {
@@ -47,22 +50,31 @@ export const SearchBar = () => {
 
             // Get Search query data
             getTmdbRecommendation(searchRef.current.value, user)
-                .then((data) => dispatch(addGptSearch({ moviesName: data[1], moviesResult: data[0] })))
+                .then((data) => {
+                    dispatch(addGptSearch({ moviesName: data[1], moviesResult: data[0] }))
+                    dispatch(setLoading(false));
+                    setSearchText('Search')
+                })
                 .catch((error) => {
                     if (error.status == 429) setError(error.message)
                 });
         }
         else {
             user?.openAiKey === null ? setShowModal(true)
-                : getTmdbRecommendation(searchRef.current.value, user)
-                    .then((data) => dispatch(addGptSearch({ moviesName: data[1], moviesResult: data[0] })))
-                    .catch((error) => {
-                        if (error.status == 429) setError(error.message)
-                        if (error.status == 401) setShowModal(true);
-                    });
-        }
+                : dispatch(setLoading(true));
+            setSearchText('Searching..');
 
-        setSearchText('search');
+            getTmdbRecommendation(searchRef.current.value, user)
+                .then((data) => {
+                    dispatch(addGptSearch({ moviesName: data[1], moviesResult: data[0] }))
+                    dispatch(setLoading(false));
+                    setSearchText('Search')
+                })
+                .catch((error) => {
+                    if (error.status == 429) setError(error.message)
+                    if (error.status == 401) setShowModal(true);
+                });
+        }
     }
 
 
@@ -82,7 +94,7 @@ export const SearchBar = () => {
                         }
                     </button>
                 </form>
-                <LimitExpire error={Error} />
+                {Error && <LimitExpire error={Error} />}
             </div>
         </>
 

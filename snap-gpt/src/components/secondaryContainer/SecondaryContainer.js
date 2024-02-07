@@ -1,13 +1,16 @@
 import { MovieList } from "./MovieList"
 import { useSelector } from "react-redux";
+import MovieListSekeleton from '../skeletons/movieList/MovieListSekeleton';
 
 export const SecondaryContainer = () => {
 
     // Get the state
-    const { nowPlayingMovies, topRatedMovies, upComingMovies } = useSelector((store) => store.movies);
+    const { nowPlayingMovies, topRatedMovies, upComingMovies, loading } = useSelector((store) => store.movies);
 
-    // If they not present return;
-    if (!nowPlayingMovies && !topRatedMovies && !upComingMovies) return;
+    // Add Loader
+    if (loading.nowPlaying && nowPlayingMovies?.length === 0) return <MovieListSekeleton />
+    if (loading.topRated && topRatedMovies?.length === 0) return <MovieListSekeleton />
+    if (loading.upComing && upComingMovies?.length === 0) return <MovieListSekeleton />
 
     return (
         <div className="bg-black text-white">
@@ -16,7 +19,6 @@ export const SecondaryContainer = () => {
                 < MovieList title={'Top Rated'} movies={topRatedMovies} />
                 < MovieList title={'Upcoming'} movies={upComingMovies} />
             </div>
-
         </div >
     )
 }

@@ -17,23 +17,25 @@ export const OpenAiKeyModal = ({ setShowModal, showModal }) => {
 
     const handleAddKey = async () => {
 
-        if (keyRef.current.value == '') {
+        if (keyRef.current.value === '') {
             setMessage("enter key...")
             setTimeout(() => setMessage(null), 1000);
+            return;
         }
+        else {
+            // Check Key validation
+            const validationOfKey = checkValidationOfKey(keyRef.current.value);
+            setMessage(validationOfKey);
+            if (validationOfKey) return;
 
-        // Check Key validation
-        const validationOfKey = checkValidationOfKey(keyRef.current.value);
-        setMessage(validationOfKey);
-        if (validationOfKey) return;
-
-        const userRef = doc(firestore, "users", user?.uid);
-        await updateDoc(userRef, {
-            openAiKey: keyRef.current.value,
-        });
-        const docData = await getFirebaseStoreDoc(user.uid);
-        dispatch(addUser({ ...user, openAiKey: docData?.openAiKey }));
-        setShowModal(false);
+            const userRef = doc(firestore, "users", user?.uid);
+            await updateDoc(userRef, {
+                openAiKey: keyRef.current.value,
+            });
+            const docData = await getFirebaseStoreDoc(user.uid);
+            dispatch(addUser({ ...user, openAiKey: docData?.openAiKey }));
+            setShowModal(false);
+        }
     }
 
     const handleCloseModal = () => {
@@ -60,6 +62,7 @@ export const OpenAiKeyModal = ({ setShowModal, showModal }) => {
         };
 
     }, [showModal]);
+
     return (
         <div id="modal" className="w-full h-screen flex items-center justify-center absolute bg-transparent  backdrop-blur-sm  z-[21]">
             <div

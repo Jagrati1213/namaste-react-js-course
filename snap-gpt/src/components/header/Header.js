@@ -66,7 +66,7 @@ function Header() {
                             </li>
                             <li onClick={handleToggleRecommendationView}
                                 className='flex items-center gap-3 cursor-pointer py-3  hover:bg-gray-700 px-10'>
-                                {!gpt.showRecommendation ? 'Get Recommendation' : 'Back to Home'}
+                                <Link to={'/browse'}> {!gpt.showRecommendation ? 'Get Recommendation' : 'Back to Home'}</Link>
                             </li>
                         </ul>
                     </div>

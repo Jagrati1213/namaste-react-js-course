@@ -6,8 +6,9 @@ import { addUser, selectUserState } from '../../utils/redux/slice/UserSlice';
 import { firestore } from '../../utils/firebase/Firebase';
 import { getFirebaseStoreDoc } from '../../utils/helper/getFirebaseStoreDoc';
 import { checkValidationOfKey } from '../../utils/helper/checkValidationofKey';
+import { AES } from 'crypto-js';
 
-export const OpenAiKeyModal = ({ setShowModal, showModal }) => {
+export const OpenAiKeyModal = ({ message_401, setShowModal, showModal, setError }) => {
 
     const modalRef = useRef();
     const keyRef = useRef(null);
@@ -18,7 +19,7 @@ export const OpenAiKeyModal = ({ setShowModal, showModal }) => {
     const handleAddKey = async () => {
 
         if (keyRef.current.value === '') {
-            setMessage("enter key...")
+            setMessage("enter your key...")
             setTimeout(() => setMessage(null), 1000);
             return;
         }
@@ -29,12 +30,15 @@ export const OpenAiKeyModal = ({ setShowModal, showModal }) => {
             if (validationOfKey) return;
 
             const userRef = doc(firestore, "users", user?.uid);
+            const encryptedOpenKey = AES.encrypt(keyRef.current.value, process.env.REACT_APP_SECRET_KEY).toString();
+
             await updateDoc(userRef, {
-                openAiKey: keyRef.current.value,
+                openAiKey: encryptedOpenKey,
             });
             const docData = await getFirebaseStoreDoc(user.uid);
             dispatch(addUser({ ...user, openAiKey: docData?.openAiKey }));
             setShowModal(false);
+            setError(null);
         }
     }
 
@@ -78,8 +82,9 @@ export const OpenAiKeyModal = ({ setShowModal, showModal }) => {
 
                 <div className="p-3">
                     <p>
-                        You have exceeded your search limit. To continue using the search feature,
-                        please add your OpenAI API key.
+                        {message_401
+                            ? 'You OpenAI Key is Invalid. To continue using the search feature,please add right OpenAI API key.'
+                            : 'You have exceeded your search limit. To continue using the search feature,please add your OpenAI API key.'}
                     </p>
                     <a className="w-full text-sm decoration-solid underline text-blue-300 mt-3" href="https://platform.openai.com/" target='_blank'>Learn How to create openAi key..</a>
                     <input ref={keyRef}
@@ -89,7 +94,7 @@ export const OpenAiKeyModal = ({ setShowModal, showModal }) => {
                     <p className='text-red-600'>{message}</p>
                 </div>
                 <div className="p-3 flex items-center justify-start">
-                    <button onClick={handleAddKey} className="text-sm font-semibold text-white bg-green-500 rounded-sm px-4 py-2">Add Key</button>
+                    <button onClick={handleAddKey} className="text-sm font-semibold text-white bg-green-500 hover:bg-green-600 rounded-sm px-4 py-2">Add Key</button>
                 </div>
             </div>
         </div>

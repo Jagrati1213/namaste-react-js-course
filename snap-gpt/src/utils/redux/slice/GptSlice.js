@@ -11,6 +11,11 @@ const GptSlice = createSlice({
     reducers: {
         toggleRecommendationView: (state, _) => {
             state.showRecommendation = !state.showRecommendation;
+            if (state.showRecommendation === false) {
+                state.gptMoviesNames = null;
+                state.gptMoviesResult = null;
+                state.loading = false;
+            }
         },
         addGptSearch: (state, action) => {
             const { moviesName, moviesResult } = action.payload;

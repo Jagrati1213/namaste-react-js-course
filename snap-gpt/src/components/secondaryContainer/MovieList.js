@@ -3,7 +3,8 @@ import { MovieCard } from './MovieCard';
 import { Link } from 'react-router-dom';
 
 function MovieList({ title, movies }) {
-
+    // Guard clause
+    if (movies?.length === 0) return;
     return (
         <div className='px-4 md:px-2'>
             <div className='py-10 text-lg md:text-2xl font-bold'>
